@@ -6,9 +6,57 @@ import { urlFor } from "@/utils/image-builder";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableText } from "next-sanity";
 import WidthConstraint from "@/components/WidthConstraint";
+import { siteConfig } from "@/config/site-config";
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  if (!params.slug) return;
+  const post = await sanityClient.fetch(
+    `*[slug.current == "${params.slug}"] {
+  _id,
+  title,
+  brief,
+  photographs[] {
+    asset-> {
+      _id,
+      url,
+    }
+  },
+  "mainImage": mainImage.asset-> {
+    _id,
+    url
+  },
+}[0]
+`
+  );
+  return {
+    title: post.title,
+    description: post.brief ?? siteConfig.description,
+    openGraph: {
+      type: "website",
+      locale: "en",
+      url: siteConfig.url,
+      title: post.title,
+      description: post.brief ?? siteConfig.description,
+      siteName: siteConfig.name,
+      image: post.mainImage.url,
+      images: post.installationViews
+        ? post.installationViews.map((item) => item.asset.url)
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.brief ?? siteConfig.description,
+      image: post.mainImage.url,
+      images: post.installationViews
+        ? post.installationViews.map((item) => item.asset.url)
+        : [],
+      creator: "@dev__steve",
+    },
+  };
+}
 
 export default async function Page({ params }) {
-  console.log(params);
   const post = await sanityClient.fetch(
     `*[slug.current == "${params.slug}"] {
   _id,

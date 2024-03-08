@@ -7,10 +7,46 @@ import { urlFor } from "@/utils/image-builder";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
-// import { PortableText } from "@portabletext/react";
+import { siteConfig } from "@/config/site-config";
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  if (!params.slug) return;
+  const details =
+    await sanityClient.fetch(`*[_type == "artist" && slug.current == "${params.slug}"] {
+        _id,
+        name,
+        slug,
+        country,
+        yob,
+        "image": image.asset->url,
+        "artistImage": artistImage.asset->url,
+    }[0]
+    `);
+  return {
+    title: details.name,
+    description: siteConfig.description,
+    openGraph: {
+      type: "website",
+      locale: "en",
+      url: siteConfig.url,
+      title: details.name,
+      description: siteConfig.description,
+      siteName: siteConfig.name,
+      image: details.image,
+      images: [details.image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: details.name,
+      description: siteConfig.description,
+      image: details.image,
+      images: [details.image],
+      creator: "@dev__steve",
+    },
+  };
+}
 
 export default async function Page({ params }) {
-  console.log(params);
   const details =
     await sanityClient.fetch(`*[_type == "artist" && slug.current == "${params.slug}"] {
         _id,
@@ -29,8 +65,6 @@ export default async function Page({ params }) {
         "artistImage": artistImage.asset->url,
     }[0]
     `);
-  console.log(details.exhibition);
-  //   console.log(details);
 
   const ptComponents = {
     types: {
@@ -54,7 +88,7 @@ export default async function Page({ params }) {
   };
 
   return (
-    <section className="my-10 lg:my-20 space-y-10">
+    <section className="py-10 lg:py-20 space-y-10">
       <WidthConstraint className="space-y-6">
         <h1 className="font-[600] text-[24px] uppercase">{details.name}</h1>
         <div className="flex lg:flex-row-reverse flex-col gap-10  justify-between">
@@ -79,7 +113,7 @@ export default async function Page({ params }) {
           </div>
         </div>
       </WidthConstraint>
-      <HeroExhibitions posts={details.exhibition} />
+      <HeroExhibitions posts={details.exhibition ?? []} />
     </section>
   );
 }

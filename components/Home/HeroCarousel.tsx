@@ -22,17 +22,13 @@ const HeroCarousel = (props: { posts: any[] }) => {
   }, []);
 
   const calculateParallaxOffset = () => {
-    const parallaxMultiplier = 0.25;
+    const parallaxMultiplier = 0.15;
     return scrollPosition * parallaxMultiplier;
   };
 
   return (
-    <div className="-z-[10] relative">
-      <div
-        className={`relative h-[calc(100vh-100px)] ${
-          current === 0 && "carousel slide carousel-fade"
-        }`}
-      >
+    <div className="z-0 relative">
+      <div className="h-[calc(100vh-100px)]">
         <Image
           src={urlFor(props.posts[current].image).url()}
           className="w-full  h-full bg-cover object-cover parallax"
@@ -43,7 +39,7 @@ const HeroCarousel = (props: { posts: any[] }) => {
             transform: `translateY(${calculateParallaxOffset()}px)`,
           }}
         />
-        <div className="hero-overlay relative">
+        <div className="hero-overlay" style={{ zIndex: 1 }}>
           <WidthConstraint className="text-start flex flex-col lg:flex-row justify-between items-start lg:items-center">
             <div className="hero-text">
               <span className="uppercase font-[400]">Exhibition | Featured</span>

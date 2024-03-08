@@ -1,12 +1,34 @@
 import ContactForm from "@/components/ContactForm";
 import WidthConstraint from "@/components/WidthConstraint";
+import { siteConfig } from "@/config/site-config";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+export const metadata: Metadata = {
+  title: "Yeb Gallery | About",
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: "en",
+    url: siteConfig.url,
+    title: `Yeb Gallery | About`,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Yeb Gallery | About`,
+    description: siteConfig.description,
+    // images: [user.photo],
+    creator: "@dev__steve",
+  },
+};
+
 const Page = () => {
   return (
-    <section className="my-10 lg:my-20 space-y-10">
+    <section className="py-10 lg:py-20 space-y-10">
       <WidthConstraint className="space-y-5">
         <h1 className="font-[600] text-[24px] uppercase">About</h1>
         <div className="flex flex-col lg:flex-row-reverse gap-10 justify-between">

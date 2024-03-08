@@ -1,21 +1,46 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import WidthConstraint from "./WidthConstraint";
 import { NAV_ITEMS } from "@/lib/constants";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const pathname = usePathname();
   const [check, setCheck] = useState(false);
+  const navRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setCheck(false);
+    }
+  };
 
   useEffect(() => {
     setCheck(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setCheck(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <header className="py-4 z-[50] h-auto transition-all sticky top-0 bg-[#fff]">
+    <header
+      className={`py-4 z-[50] overflow-clip fixed top-0 w-screen bg-[#fff]`}
+      ref={navRef}
+    >
       <WidthConstraint className="flex flex-col justify-between gap-4">
         <div className="flex justify-between  items-center w-full">
           <Link href="/">
@@ -54,17 +79,26 @@ const Header = () => {
             </nav>
           }
         </div>
-        {check && (
-          <nav className="lg:hidden animate-in slide-in-from-top">
-            <ul className=" flex flex-col  gap-4 nav-link">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.path}>
-                  <Link href={item.path}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+
+        <AnimatePresence>
+          {check && (
+            <motion.nav
+              key="nav"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden"
+            >
+              <ul className="flex flex-col gap-4 nav-link">
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.path}>
+                    <Link href={item.path}>{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </WidthConstraint>
     </header>
   );

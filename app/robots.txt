@@ -1,0 +1,8 @@
+User-agent: Googlebot
+Disallow:
+User-agent: googlebot-image
+Disallow:
+User-agent: *
+Disallow:
+
+Sitemap: https://yebgallery.com/sitemap.xml

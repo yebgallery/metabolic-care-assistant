@@ -1,9 +1,31 @@
 import WidthConstraint from "@/components/WidthConstraint";
 import sanityClient from "@/config/sanity";
+import { siteConfig } from "@/config/site-config";
 import { urlFor } from "@/utils/image-builder";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Yeb Gallery | Artists",
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: "en",
+    url: siteConfig.url,
+    title: `Yeb Gallery | Artists`,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Yeb Gallery | Artists}`,
+    description: siteConfig.description,
+    // images: [user.photo],
+    creator: "@dev__steve",
+  },
+};
 
 export default async function Page() {
   const artists =
@@ -14,7 +36,7 @@ export default async function Page() {
         "image": image.asset->url
       }  [0...50]`);
   return (
-    <section className="my-10 lg:my-20 space-y-10">
+    <section className="py-10 lg:py-20 space-y-10">
       <WidthConstraint className="space-y-10">
         <div className="space-y-4">
           <h1 className="text-[20px]">

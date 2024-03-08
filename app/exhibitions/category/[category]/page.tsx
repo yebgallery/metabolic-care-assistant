@@ -3,6 +3,31 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { urlFor } from "@/utils/image-builder";
+import { siteConfig } from "@/config/site-config";
+
+export async function generateMetadata({ params }: { params: { category: string } }) {
+  if (!params.category) return;
+  const category = params.category.split("")[0].toUpperCase() + params.category.slice(1);
+  return {
+    title: `Yeb Gallery | ${category}`,
+    description: siteConfig.description,
+    openGraph: {
+      type: "website",
+      locale: "en",
+      url: siteConfig.url,
+      title: `Yeb Gallery | ${category}`,
+      description: siteConfig.description,
+      siteName: siteConfig.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Yeb Gallery | ${category}`,
+      description: siteConfig.description,
+      // images: [user.photo],
+      creator: "@dev__steve",
+    },
+  };
+}
 
 export default async function Page({
   params,
@@ -10,7 +35,6 @@ export default async function Page({
   params: { category: string };
 }): Promise<React.JSX.Element> {
   const currentRef = params.category === "forth-coming" ? "forthcoming" : params.category;
-  console.log(params);
   const exhibitions =
     await sanityClient.fetch(`*[_type == "post" && "${currentRef}" in categories[]->title] | order(_createdAt desc){
   _id,
