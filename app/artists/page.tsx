@@ -1,0 +1,64 @@
+import WidthConstraint from "@/components/WidthConstraint";
+import sanityClient from "@/config/sanity";
+import { urlFor } from "@/utils/image-builder";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+export default async function Page() {
+  const artists =
+    await sanityClient.fetch(`*[_type == "artist" ] | order(_createdAt desc){
+        _id,
+        name,
+        slug,
+        "image": image.asset->url
+      }  [0...50]`);
+  return (
+    <section className="my-10 lg:my-20 space-y-10">
+      <WidthConstraint className="space-y-10">
+        <div className="space-y-4">
+          <h1 className="text-[20px]">
+            FEATURED ARTIST | <span className="text-[16px]">KWABENA YEBOAH</span>
+          </h1>
+          <div className="w-full max-h-[400px]">
+            <Link href="/artists/kwabena-yeboah">
+              <Image
+                src="/assets/featured.jpg"
+                className="w-full h-full"
+                width={500}
+                height={400}
+                alt=""
+              />
+            </Link>
+          </div>
+        </div>
+        <div className="space-y-4">
+          <h2 className="font-[600] text-[18px] uppercase">Various Artists</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="col mb-4" data-aos="fade-up" data-aos-duration="1500">
+              {artists.map((item) => (
+                <Link
+                  key={item.slug.current}
+                  href={`/artists/${item.slug.current}`}
+                  className="news-link"
+                >
+                  <div className="project-image">
+                    <Image
+                      src={urlFor(item.image).url()}
+                      alt=""
+                      width={400}
+                      height={400}
+                    />
+                  </div>
+                  <h2 className="project-title mt-4">{item.name}</h2>
+                  <span className="mb-3 date-info d-block">{item.exhibitingartist}</span>
+                  <span className="date-info">{item.eventdate}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </WidthConstraint>
+    </section>
+  );
+}
