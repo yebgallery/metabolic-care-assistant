@@ -14,12 +14,13 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | News`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [siteConfig.image],
   },
   twitter: {
     card: "summary_large_image",
     title: `Yeb Gallery | News`,
     description: siteConfig.description,
-    // images: [user.photo],
+    images: [siteConfig.image],
     creator: "@dev__steve",
   },
 };

@@ -1,5 +1,4 @@
 import WidthConstraint from "@/components/WidthConstraint";
-import { siteConfig } from "@/config/site-config";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 

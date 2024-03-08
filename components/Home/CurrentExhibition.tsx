@@ -3,8 +3,9 @@ import WidthConstraint from "../WidthConstraint";
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/utils/image-builder";
+import { Post } from "@/interfaces";
 
-const CurrentExhibition = (props: { current: any }) => {
+const CurrentExhibition = (props: { current: Post }) => {
   return (
     <section className="pt-10 pb-20  bg-[#fff] ">
       <WidthConstraint className="space-y-10">

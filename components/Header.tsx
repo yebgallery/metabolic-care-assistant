@@ -10,10 +10,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const Header = () => {
   const pathname = usePathname();
   const [check, setCheck] = useState(false);
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLHeadingElement | null>(null);
 
-  const handleClickOutside = (event) => {
-    if (navRef.current && !navRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setCheck(false);
     }
   };
@@ -89,7 +89,7 @@ const Header = () => {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden"
             >
-              <ul className="flex flex-col gap-4 nav-link">
+              <ul className="flex flex-col gap-4 nav-link pb-4">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.path}>
                     <Link href={item.path}>{item.label}</Link>

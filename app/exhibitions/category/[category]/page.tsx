@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { urlFor } from "@/utils/image-builder";
 import { siteConfig } from "@/config/site-config";
+import { Post } from "@/interfaces";
 
 export async function generateMetadata({ params }: { params: { category: string } }) {
   if (!params.category) return;
@@ -18,12 +19,13 @@ export async function generateMetadata({ params }: { params: { category: string 
       title: `Yeb Gallery | ${category}`,
       description: siteConfig.description,
       siteName: siteConfig.name,
+      images: [siteConfig.image],
     },
     twitter: {
       card: "summary_large_image",
       title: `Yeb Gallery | ${category}`,
       description: siteConfig.description,
-      // images: [user.photo],
+      images: [siteConfig.image],
       creator: "@dev__steve",
     },
   };
@@ -35,7 +37,7 @@ export default async function Page({
   params: { category: string };
 }): Promise<React.JSX.Element> {
   const currentRef = params.category === "forth-coming" ? "forthcoming" : params.category;
-  const exhibitions =
+  const exhibitions: Post[] =
     await sanityClient.fetch(`*[_type == "post" && "${currentRef}" in categories[]->title] | order(_createdAt desc){
   _id,
   title,
@@ -51,7 +53,7 @@ export default async function Page({
   return (
     <>
       {exhibitions.map((item) => (
-        <Link key={item} href={`/exhibitions/${item.slug.current}`}>
+        <Link key={item.slug.current} href={`/exhibitions/${item.slug.current}`}>
           <div
             data-aos="fade-up"
             data-aos-duration="1500"

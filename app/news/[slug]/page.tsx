@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/utils/image-builder";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -8,6 +7,7 @@ import sanityClient from "@/config/sanity";
 import NewsSection from "@/components/Home/NewsSection";
 import WidthConstraint from "../../../components/WidthConstraint";
 import { siteConfig } from "@/config/site-config";
+import { News } from "@/interfaces";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   if (!params.slug) return;
@@ -47,8 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function Page({ params }) {
-  const newsFeed =
+export default async function Page({ params }: { params: { slug: string } }) {
+  const newsFeed: News[] =
     await sanityClient.fetch(`*[_type == "news"  ] | order(_createdAt desc){
   _id,
   title,
@@ -62,11 +62,11 @@ export default async function Page({ params }) {
 }`);
 
   const post = newsFeed
-    ? newsFeed.find((item) => item.slug.current === params.slug)
+    ? (newsFeed.find((item) => item.slug.current === params.slug) as News)
     : null;
   const ptComponents = {
     types: {
-      image: ({ value }) => {
+      image: ({ value }: { value: SanityImageSource }) => {
         if (!value) {
           return null;
         }
@@ -97,7 +97,7 @@ export default async function Page({ params }) {
               </p>
             </div>
             <article className="leading-[30px] text-[18px]">
-              <PortableText components={ptComponents} value={post.body} />
+              <PortableText components={ptComponents} value={post.body as any} />
             </article>
           </div>
           <div className="lg:w-[35%] max-h-[430px]">

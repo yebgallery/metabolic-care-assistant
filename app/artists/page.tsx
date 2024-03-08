@@ -1,6 +1,7 @@
 import WidthConstraint from "@/components/WidthConstraint";
 import sanityClient from "@/config/sanity";
 import { siteConfig } from "@/config/site-config";
+import { Artist } from "@/interfaces";
 import { urlFor } from "@/utils/image-builder";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -17,18 +18,19 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | Artists`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [siteConfig.image],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Yeb Gallery | Artists}`,
+    title: `Yeb Gallery | Artists`,
     description: siteConfig.description,
-    // images: [user.photo],
+    images: [siteConfig.image],
     creator: "@dev__steve",
   },
 };
 
 export default async function Page() {
-  const artists =
+  const artists: Artist[] =
     await sanityClient.fetch(`*[_type == "artist" ] | order(_createdAt desc){
         _id,
         name,
@@ -73,7 +75,7 @@ export default async function Page() {
                     />
                   </div>
                   <h2 className="project-title mt-4">{item.name}</h2>
-                  <span className="mb-3 date-info d-block">{item.exhibitingartist}</span>
+                  {/* <span className="mb-3 date-info d-block">{item.exhibitingartist}</span> */}
                   <span className="date-info">{item.eventdate}</span>
                 </Link>
               ))}

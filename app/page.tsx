@@ -4,6 +4,7 @@ import HeroExhibitions from "@/components/Home/HeroExhibitions";
 import NewsSection from "@/components/Home/NewsSection";
 import sanityClient from "@/config/sanity";
 import { siteConfig } from "@/config/site-config";
+import { Post } from "@/interfaces";
 import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 
@@ -17,12 +18,13 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | Home`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [siteConfig.image],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Yeb Gallery | Home}`,
+    title: `Yeb Gallery | Home`,
     description: siteConfig.description,
-    // images: [user.photo],
+    images: [siteConfig.image],
     creator: "@dev__steve",
   },
 };
@@ -39,7 +41,7 @@ export default async function Home() {
   "image": mainImage.asset->url
 }`);
 
-  const heroExhibitions =
+  const heroExhibitions: Post[] =
     await sanityClient.fetch(`*[_type == "post" && "current" in categories[]->title ] | order(_createdAt desc) {
     _id,
     title,
@@ -57,11 +59,13 @@ export default async function Home() {
       <div className="z-[20] relative">
         <NewsSection news={newsFeed} title="Featured News" />
         <CurrentExhibition
-          current={heroExhibitions.find(
-            (item) =>
-              item.slug.current ===
-              "kwabena-yeboah-threads-of-life-ii-solo-art-exhibition"
-          )}
+          current={
+            heroExhibitions.find(
+              (item) =>
+                item.slug.current ===
+                "kwabena-yeboah-threads-of-life-ii-solo-art-exhibition"
+            ) as Post
+          }
         />
         <HeroExhibitions
           posts={heroExhibitions.filter(

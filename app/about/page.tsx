@@ -16,12 +16,13 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | About`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [siteConfig.image],
   },
   twitter: {
     card: "summary_large_image",
     title: `Yeb Gallery | About`,
     description: siteConfig.description,
-    // images: [user.photo],
+    images: [siteConfig.image],
     creator: "@dev__steve",
   },
 };
@@ -98,7 +99,7 @@ const Page = () => {
               </p>
               <iframe
                 className="w-full h-[250px]"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.1752427297865!2d-0.35473031477873795!3d5.541012480101338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdfbcc38a554f77%3A0xb05917665568b6b2!2sGMR2%2BC32%2C%20Solo%20Ave%2C%20Mile%2011!5e0!3m2!1sen!2sgh!4v1709588403757!5m2!1sen!2sgh"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.1702289738882!2d-0.3515793240827851!3d5.541758094438535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdfbd5595fe88e1%3A0x8910af9b9a5f6d1!2sYeb%20Gallery!5e0!3m2!1sen!2sgh!4v1709940578289!5m2!1sen!2sgh"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 style={{ border: "0" }}

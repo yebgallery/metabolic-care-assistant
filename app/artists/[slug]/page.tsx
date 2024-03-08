@@ -46,7 +46,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<React.JSX.Element> {
   const details =
     await sanityClient.fetch(`*[_type == "artist" && slug.current == "${params.slug}"] {
         _id,
@@ -68,7 +72,7 @@ export default async function Page({ params }) {
 
   const ptComponents = {
     types: {
-      image: ({ value }) => {
+      image: ({ value }: { value: SanityImageSource }) => {
         if (!value) {
           return null;
         }

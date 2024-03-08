@@ -7,10 +7,11 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableText } from "next-sanity";
 import WidthConstraint from "@/components/WidthConstraint";
 import { siteConfig } from "@/config/site-config";
+import { Post } from "@/interfaces";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   if (!params.slug) return;
-  const post = await sanityClient.fetch(
+  const post: Post = await sanityClient.fetch(
     `*[slug.current == "${params.slug}"] {
   _id,
   title,
@@ -56,7 +57,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function Page({ params }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<React.JSX.Element> {
   const post = await sanityClient.fetch(
     `*[slug.current == "${params.slug}"] {
   _id,
@@ -98,7 +103,7 @@ export default async function Page({ params }) {
 
   const ptComponents = {
     types: {
-      image: ({ value }) => {
+      image: ({ value }: { value: SanityImageSource }) => {
         if (!value) {
           return null;
         }
@@ -191,16 +196,18 @@ export default async function Page({ params }) {
           <div className="space-y-10" id="installation">
             <h2 className="font-[600] text-[18px] uppercase">Installation View</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {post.installationViews.map((item) => (
-                <Image
-                  key={item.asset._id}
-                  src={item.asset.url}
-                  width={500}
-                  height={500}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              ))}
+              {post.installationViews.map(
+                (item: { asset: { _id: string; url: string } }) => (
+                  <Image
+                    key={item.asset._id}
+                    src={item.asset.url}
+                    width={500}
+                    height={500}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                )
+              )}
             </div>
           </div>
         )}
@@ -208,7 +215,7 @@ export default async function Page({ params }) {
           <div className="space-y-10" id="photographs">
             <h2 className="font-[600] text-[18px] uppercase">Photographs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {post.photographs.map((item) => (
+              {post.photographs.map((item: { asset: { _id: string; url: string } }) => (
                 <Image
                   key={item.asset._id}
                   src={item.asset.url}
