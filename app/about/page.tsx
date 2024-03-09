@@ -60,7 +60,7 @@ const Page = () => {
             <div className="space-y-2 py-4">
               <h2 className="font-[600] text-[18px] uppercase">About Yeb Gallery</h2>
               <p className="font-[300]">
-                In 2022, Yeboah founded Yeb Gallery, an artist-owned contemporary art
+                In 2022, Yeboah founded Yeb Gallery, an artist-run contemporary art
                 gallery based in Accra, Ghana with his son Kofi Yeboah, Co-Founder and
                 Gallery Director. As an artist-run space, Yeb Gallery brings Yeboah&apos;s
                 contemporary African art practice alongside emerging and established
