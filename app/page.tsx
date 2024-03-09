@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | Home`,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [siteConfig.image],
+    images: siteConfig.image,
   },
   twitter: {
     card: "summary_large_image",
     title: `Yeb Gallery | Home`,
     description: siteConfig.description,
-    images: [siteConfig.image],
+    images: siteConfig.image,
     creator: "@dev__steve",
   },
 };
@@ -54,7 +54,7 @@ export default async function Home() {
   }`);
 
   return (
-    <main className="">
+    <main>
       <HeroCarousel posts={heroExhibitions.slice(0, 2)} />
       <div className="z-[20] relative">
         <NewsSection news={newsFeed} title="Featured News" />
