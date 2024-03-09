@@ -59,7 +59,7 @@ const HeroCarousel = (props: { posts: any[] }) => {
               <h1
                 className={`font-[700] ${
                   current !== 0 ? "hero-title" : ""
-                }  uppercase text-[24px] md:text-[28px] lg:text-[32px] tracking-[4.3px] text-white`}
+                }  uppercase text-[24px] md:text-[28px] lg:text-[32px] leading-[2.5rem] tracking-[4.3px] text-white`}
               >
                 <Link href={`/exhibitions/${props.posts[current].slug.current}`}>
                   {props.posts[current].title}
