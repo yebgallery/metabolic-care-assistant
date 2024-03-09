@@ -6,8 +6,9 @@ import { urlFor } from "@/utils/image-builder";
 import { Post } from "@/interfaces";
 
 const CurrentExhibition = (props: { current: Post }) => {
+  if (!props.current) return null;
   return (
-    <section className="pt-10 pb-20  bg-[#fff] ">
+    <section className="pt-10 pb-20 bg-[#fff] ">
       <WidthConstraint className="space-y-10">
         <h2 className="font-[600] text-[18px] uppercase">Current</h2>
         <div>
@@ -24,18 +25,16 @@ const CurrentExhibition = (props: { current: Post }) => {
                 alt=""
                 className="w-full lg:h-[450px] max-h-[550px] object-cover"
               />
-              <div className="flex gap-4 justify-center flex-col">
-                <h2 className="text-[30px] leading-[40px] tracking-[4.8px]">
+              <span className="flex gap-4 justify-center flex-col">
+                <h2 className="text-[24px] md:text-[28px] lg:text-[32px] tracking-[4.8px]">
                   {props.current.title}
                 </h2>
-                <span>{props.current.eventlocation}</span>
+                <span className="text-text-accent">{props.current.eventlocation}</span>
                 <hr />
-                <span>{props.current.eventdate}</span>
+                <span className="text-text-accent">{props.current.eventdate}</span>
                 <p className="mt-3">{props.current.brief}</p>
-                <Link href="#" className="text-dark">
-                  READ MORE
-                </Link>
-              </div>
+                <p className="text-text-accent">READ MORE</p>
+              </span>
             </div>
           </Link>
         </div>

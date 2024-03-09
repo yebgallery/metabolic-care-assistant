@@ -6,6 +6,7 @@ import WidthConstraint from "./WidthConstraint";
 import { NAV_ITEMS } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/utils/cn";
 
 const Header = () => {
   const pathname = usePathname();
@@ -36,6 +37,23 @@ const Header = () => {
     };
   }, []);
 
+  function isPathnameMatch(currentPathname: string, targetPathname: string): boolean {
+    const currentPathSegments = currentPathname.trim().split("/");
+    const targetPathSegments = targetPathname.trim().split("/");
+
+    if (currentPathname === targetPathname) {
+      return true;
+    }
+
+    if (currentPathSegments.length > 2) {
+      if (currentPathSegments[1] === targetPathSegments[1]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   return (
     <header
       className={`py-4 z-[50] overflow-clip fixed top-0 w-screen bg-[#fff]`}
@@ -48,10 +66,20 @@ const Header = () => {
           </Link>
           {
             <nav className="">
-              <ul className="hidden lg:flex gap-8 nav-link">
+              <ul className="hidden lg:flex gap-8 nav-link ">
                 {NAV_ITEMS.map((item) => (
-                  <li key={item.path}>
-                    <Link href={item.path}>{item.label}</Link>
+                  <li key={item.path} className="">
+                    <Link
+                      href={item.path}
+                      className={cn(
+                        "barlow",
+                        isPathnameMatch(pathname, item.path)
+                          ? "text-text"
+                          : "text-text-accent"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

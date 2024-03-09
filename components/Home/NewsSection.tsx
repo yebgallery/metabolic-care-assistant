@@ -15,21 +15,21 @@ const NewsSection = (props: { news: any[]; title: string }) => {
           data-aos-duration="1500"
         >
           {props.news.map((item) => (
-            <Link key={item} href={`/news/${item.slug.current}`}>
+            <Link key={item.slug.current} href={`/news/${item.slug.current}`}>
               <Image
                 src={urlFor(item.image).url()}
-                className="object-cover w-full lg:h-[260px]"
+                className="object-cover w-full pb-4 lg:h-[260px]"
                 width={500}
                 height={500}
                 alt=""
               />
-              <div className="space-y-2 py-4">
+              <span className="space-y-2">
                 <h2 className="text-[18px]">{item.title}</h2>
-                <span className="text-[14px]">{item.excerpt}</span>
-                <p className="text-[#7F7F7F] tracking-[1.84px] text-[12px]">
+                <span className="text-[14px] text-text-accent">{item.excerpt}</span>
+                <p className="text-text-accent tracking-[1.8px] text-[12px]">
                   {item.eventdate}
                 </p>
-              </div>
+              </span>
             </Link>
           ))}
         </div>

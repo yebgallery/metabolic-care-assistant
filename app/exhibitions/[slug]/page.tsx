@@ -8,6 +8,8 @@ import { PortableText } from "next-sanity";
 import WidthConstraint from "@/components/WidthConstraint";
 import { siteConfig } from "@/config/site-config";
 import { Post } from "@/interfaces";
+import { unstable_noStore } from "next/cache";
+import ErrorComponent from "@/components/Error";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   if (!params.slug) return;
@@ -62,6 +64,7 @@ export default async function Page({
 }: {
   params: { slug: string };
 }): Promise<React.JSX.Element> {
+  unstable_noStore();
   const post = await sanityClient.fetch(
     `*[slug.current == "${params.slug}"] {
   _id,
@@ -121,7 +124,23 @@ export default async function Page({
       },
     },
   };
-  if (!post) return <>No post</>;
+
+  const NAV_FILTERS = [
+    {
+      label: "Overview",
+      path: "#overview",
+    },
+    {
+      label: "Installation Views",
+      path: "#installation",
+    },
+    {
+      label: "Photos",
+      path: "#photos",
+    },
+  ];
+
+  if (!post) return <ErrorComponent title={`No Exhibition to show`} />;
 
   return (
     <>
@@ -137,40 +156,27 @@ export default async function Page({
         </div>
       )}
       <WidthConstraint className="my-20 space-y-10">
-        <h1 className="font-[600] text-[24px] uppercase">{post.title}</h1>
-        <div className="flex flex-col lg:flex-row justify-between items-start  lg:items-center">
-          <p className="">
-            {post.eventlocation} {post.eventdate}
-          </p>
-          <ul className="flex items-center flex-wrap">
-            <li className="nav-item">
-              <Link
-                className="nav-link active fw-normal me-4"
-                aria-current="page"
-                href={`/exhibitions/${post.slug.current}/#`}
-              >
-                Overview
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                href={`/exhibitions/${post.slug.current}/#installation`}
-                className="nav-link active fw-normal me-4"
-                aria-current="page"
-              >
-                Installation Views
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                href={`/exhibitions/${post.slug.current}/#photos`}
-                className="nav-link active fw-normal me-4"
-                aria-current="page"
-              >
-                Photographs
-              </Link>
-            </li>
-          </ul>
+        <div className="space-y-4 lg:space-y-10">
+          <h1
+            className="font-[600] text-[24px] uppercase  scroll-m-[120px]"
+            id="overview"
+          >
+            {post.title}
+          </h1>
+          <div className="flex flex-col gap-4 lg:flex-row justify-between items-start  lg:items-center">
+            <p className="">
+              {post.eventlocation} {post.eventdate}
+            </p>
+            <ul className="flex items-center flex-wrap justify-between w-full sm:w-max lg:justify-start gap-4">
+              {NAV_FILTERS.map((item) => (
+                <li key={item.path}>
+                  <Link className="nav-link" href={item.path}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="flex flex-col pb-20 lg:flex-row-reverse justify-between gap-10">
           <div className="lg:w-[40%] lg:max-h-[400px]">
@@ -193,7 +199,7 @@ export default async function Page({
           </div>
         </div>
         {post.installationViews && (
-          <div className="space-y-10" id="installation">
+          <div className="space-y-10 pb-20 scroll-m-[100px]" id="installation">
             <h2 className="font-[600] text-[18px] uppercase">Installation View</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {post.installationViews.map(
@@ -212,7 +218,7 @@ export default async function Page({
           </div>
         )}
         {post.photographs && (
-          <div className="space-y-10" id="photographs">
+          <div className="space-y-10 scroll-m-[100px]" id="photos">
             <h2 className="font-[600] text-[18px] uppercase">Photographs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {post.photographs.map((item: { asset: { _id: string; url: string } }) => (

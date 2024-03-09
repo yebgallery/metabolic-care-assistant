@@ -8,6 +8,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 import { siteConfig } from "@/config/site-config";
+import { unstable_noStore } from "next/cache";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   if (!params.slug) return;
@@ -51,6 +52,7 @@ export default async function Page({
 }: {
   params: { slug: string };
 }): Promise<React.JSX.Element> {
+  unstable_noStore();
   const details =
     await sanityClient.fetch(`*[_type == "artist" && slug.current == "${params.slug}"] {
         _id,
@@ -92,7 +94,7 @@ export default async function Page({
   };
 
   return (
-    <section className="py-10 lg:py-20 space-y-10">
+    <section className="py-14 lg:py-20 space-y-10">
       <WidthConstraint className="space-y-6">
         <h1 className="font-[600] text-[24px] uppercase">{details.name}</h1>
         <div className="flex lg:flex-row-reverse flex-col gap-10  justify-between">

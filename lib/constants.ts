@@ -12,8 +12,8 @@ export const NAV_ITEMS = [
     path: "/artists",
   },
   {
-    label: "Exhibition",
-    path: "/exhibitions/category/current",
+    label: "Exhibitions",
+    path: "/exhibitions/category/all",
   },
   {
     label: "News",

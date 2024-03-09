@@ -14,6 +14,7 @@ export interface Artist {
 export interface Post {
   image: SanityImageSource;
   title: string;
+  excerpt: string;
   slug: {
     current: string;
     id: string;
@@ -30,6 +31,7 @@ export interface Post {
 export interface News {
   _id: string;
   title: string;
+  source?: string;
   slug: {
     _id: string;
     current: string;

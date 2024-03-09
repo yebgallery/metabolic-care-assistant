@@ -1,9 +1,11 @@
+import ErrorComponent from "@/components/Error";
 import WidthConstraint from "@/components/WidthConstraint";
 import sanityClient from "@/config/sanity";
 import { siteConfig } from "@/config/site-config";
 import { Artist } from "@/interfaces";
 import { urlFor } from "@/utils/image-builder";
 import { Metadata } from "next";
+import { unstable_noStore } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -30,6 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
+  unstable_noStore();
   const artists: Artist[] =
     await sanityClient.fetch(`*[_type == "artist" ] | order(_createdAt desc){
         _id,
@@ -37,24 +40,24 @@ export default async function Page() {
         slug,
         "image": image.asset->url
       }  [0...50]`);
+
+  if (!artists) return <ErrorComponent title={`No Artists to show`} />;
   return (
-    <section className="py-10 lg:py-20 space-y-10">
+    <section className="py-14 lg:py-20 space-y-10">
       <WidthConstraint className="space-y-10">
         <div className="space-y-4">
           <h1 className="text-[20px]">
             FEATURED ARTIST | <span className="text-[16px]">KWABENA YEBOAH</span>
           </h1>
-          <div className="w-full max-h-[400px]">
-            <Link href="/artists/kwabena-yeboah">
-              <Image
-                src="/assets/featured.jpg"
-                className="w-full h-full"
-                width={500}
-                height={400}
-                alt=""
-              />
-            </Link>
-          </div>
+          <Link href="/artists/kwabena-yeboah" className="w-full">
+            <Image
+              src="/assets/featured.jpg"
+              className="min-h-[250px] max-h-[400px] object-cover"
+              width={500}
+              height={400}
+              alt=""
+            />
+          </Link>
         </div>
         <div className="space-y-4">
           <h2 className="font-[600] text-[18px] uppercase">Various Artists</h2>
@@ -75,8 +78,7 @@ export default async function Page() {
                     />
                   </div>
                   <h2 className="project-title mt-4">{item.name}</h2>
-                  {/* <span className="mb-3 date-info d-block">{item.exhibitingartist}</span> */}
-                  <span className="date-info">{item.eventdate}</span>
+                  <span>{item.eventdate}</span>
                 </Link>
               ))}
             </div>

@@ -2,6 +2,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
+import MainLayout from "@/components/layout/MainLayout";
 
 export default function RootLayout({
   children,
@@ -19,7 +20,7 @@ export default function RootLayout({
       <body>
         <Header />
         <Toaster />
-        <div className="mt-[80px]">{children}</div>
+        <MainLayout>{children}</MainLayout>
         <Footer />
       </body>
     </html>

@@ -7,13 +7,13 @@ import { NAV_ITEMS } from "@/lib/constants";
 const Footer = () => {
   return (
     <footer className="">
-      <WidthConstraint className="border-t border-gray-300 py-10 flex items-center justify-between flex-wrap gap-4">
+      <WidthConstraint className="footer py-10 flex items-center justify-between flex-wrap gap-4">
         <div className="flex flex-col  gap-2">
           <ul className="flex gap-4 items-center justify-start">
             {NAV_ITEMS.filter((item) => item.path !== "/artists/kwabena-yeboah").map(
               (item) => (
                 <li key={item.path}>
-                  <Link href={item.path} className="text-[10px]">
+                  <Link href={item.path} className="text-[10px] barlow uppercase">
                     {item.label}
                   </Link>
                 </li>

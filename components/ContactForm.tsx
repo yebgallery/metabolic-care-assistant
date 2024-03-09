@@ -34,7 +34,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="space-y-4 py-4">
+    <div className="space-y-4 py-10">
       <h2 className="font-[600] text-[18px] uppercase">CONTACT FORM</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-3">

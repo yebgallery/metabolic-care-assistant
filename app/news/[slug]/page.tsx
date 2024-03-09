@@ -8,6 +8,9 @@ import NewsSection from "@/components/Home/NewsSection";
 import WidthConstraint from "../../../components/WidthConstraint";
 import { siteConfig } from "@/config/site-config";
 import { News } from "@/interfaces";
+import { unstable_noStore } from "next/cache";
+import Link from "next/link";
+import ErrorComponent from "@/components/Error";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   if (!params.slug) return;
@@ -48,12 +51,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
+  unstable_noStore();
   const newsFeed: News[] =
     await sanityClient.fetch(`*[_type == "news"  ] | order(_createdAt desc){
   _id,
   title,
   slug,
   excerpt,
+  source,
   eventdate,
      body, 
   "image": mainImage.asset->url,
@@ -84,9 +89,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
       },
     },
   };
-  if (!post) return <>No post available</>;
+  if (!post) return <ErrorComponent title="Sorry, there is no news to show!" />;
+
   return (
-    <section className="py-10 lg:py-20 space-y-10">
+    <section className="py-14 lg:py-20 space-y-10">
       <WidthConstraint>
         <div className="flex flex-col-reverse lg:flex-row gap-10 justify-content-between">
           <div className="flex-1 space-y-4">
@@ -96,9 +102,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 {post.excerpt} {post.eventdate}
               </p>
             </div>
-            <article className="leading-[30px] text-[18px]">
+            <article className="leading-[30px] text-[18px] font-[300]">
               <PortableText components={ptComponents} value={post.body as any} />
             </article>
+            {post.source && (
+              <>
+                <br />
+                <Link href={post.source} className="text-text-accent">
+                  LEARN MORE {">"}
+                </Link>
+              </>
+            )}
           </div>
           <div className="lg:w-[35%] max-h-[430px]">
             <Image

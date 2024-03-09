@@ -1,7 +1,10 @@
+import ErrorComponent from "@/components/Error";
+import Error from "@/components/Error";
 import NewsSection from "@/components/Home/NewsSection";
 import sanityClient from "@/config/sanity";
 import { siteConfig } from "@/config/site-config";
 import { Metadata } from "next";
+import { unstable_noStore } from "next/cache";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -26,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
+  unstable_noStore();
   const newsFeed =
     await sanityClient.fetch(`*[_type == "news"  ] | order(_createdAt desc){
   _id,
@@ -35,6 +39,7 @@ export default async function Page() {
   eventdate,
   "image": mainImage.asset->url
 }`);
+  if (!newsFeed) return <ErrorComponent title="Sorry, there are no news to show!" />;
   return (
     <section className="my-10 space-y-10">
       <NewsSection news={newsFeed} title="News" />

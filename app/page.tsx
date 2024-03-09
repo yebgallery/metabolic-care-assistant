@@ -61,9 +61,7 @@ export default async function Home() {
         <CurrentExhibition
           current={
             heroExhibitions.find(
-              (item) =>
-                item.slug.current ===
-                "kwabena-yeboah-threads-of-life-ii-solo-art-exhibition"
+              (item) => item.slug.current === "kwabena-yeboah-threads-of-life-ii"
             ) as Post
           }
         />
