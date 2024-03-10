@@ -34,7 +34,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.brief ?? siteConfig.description,
-
+    alternates: {
+      canonical: `/exhibitions/${params.slug}`,
+    },
     openGraph: {
       type: "website",
       locale: "en",
@@ -42,19 +44,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: post.title,
       description: post.brief ?? siteConfig.description,
       siteName: siteConfig.name,
-      image: post.mainImage.url,
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
-        : [],
+        : [siteConfig.url],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.brief ?? siteConfig.description,
-      image: post.mainImage.url,
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
-        : [],
+        : [siteConfig.url],
       creator: "@dev__steve",
     },
   };

@@ -3,13 +3,14 @@ import WidthConstraint from "@/components/WidthConstraint";
 import { siteConfig } from "@/config/site-config";
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
   title: "Yeb Gallery | About",
   description: siteConfig.description,
-
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     type: "website",
     locale: "en",
@@ -54,9 +55,9 @@ const Page = () => {
                 and Kalahari Resorts in the US.
               </p>
               <br />
-              <Link href="/artists/kwabena-yeboah" className="text-text-accent">
+              <a href="/artists/kwabena-yeboah" className="text-text-accent">
                 LEARN MORE {">"}
-              </Link>
+              </a>
             </div>
             <div className="space-y-2 py-4">
               <h2 className="font-[600] text-[18px] uppercase">About Yeb Gallery</h2>

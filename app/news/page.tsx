@@ -9,7 +9,9 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Yeb Gallery | News",
   description: siteConfig.description,
-
+  alternates: {
+    canonical: `/news`,
+  },
   openGraph: {
     type: "website",
     locale: "en",

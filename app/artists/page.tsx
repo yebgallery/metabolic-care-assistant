@@ -13,7 +13,9 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Yeb Gallery | Artists",
   description: siteConfig.description,
-
+  alternates: {
+    canonical: "/artists",
+  },
   openGraph: {
     type: "website",
     locale: "en",

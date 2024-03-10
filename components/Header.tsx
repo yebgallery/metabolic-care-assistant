@@ -61,9 +61,9 @@ const Header = () => {
     >
       <WidthConstraint className="flex flex-col justify-between gap-4">
         <div className="flex justify-between  items-center w-full">
-          <Link href="/">
+          <a href="/">
             <Image src="/assets/logo.svg" alt="" width={200} height={100} />
-          </Link>
+          </a>
           {
             <nav className="">
               <ul className="hidden lg:flex gap-8 nav-link ">
@@ -120,7 +120,7 @@ const Header = () => {
               <ul className="flex flex-col gap-4 nav-link pb-4">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.path}>
-                    <Link href={item.path}>{item.label}</Link>
+                    <a href={item.path}>{item.label}</a>
                   </li>
                 ))}
               </ul>

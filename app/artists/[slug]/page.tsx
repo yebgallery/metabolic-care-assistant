@@ -26,7 +26,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: details.name,
     description: siteConfig.description,
-
+    alternates: {
+      canonical: `/artists/${params.slug}`,
+    },
     openGraph: {
       type: "website",
       locale: "en",
@@ -34,14 +36,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: details.name,
       description: siteConfig.description,
       siteName: siteConfig.name,
-      image: details.image,
       images: [details.image],
     },
     twitter: {
       card: "summary_large_image",
       title: details.name,
       description: siteConfig.description,
-      image: details.image,
       images: [details.image],
       creator: "@dev__steve",
     },

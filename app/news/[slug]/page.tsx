@@ -37,15 +37,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: details.title,
       description: siteConfig.description,
       siteName: siteConfig.name,
-      image: details.image.asset.url,
-      images: [details.image.asset.url],
+      images: [details.image.asset.url, siteConfig.image],
     },
     twitter: {
       card: "summary_large_image",
       title: details.title,
       description: siteConfig.description,
-      image: details.image.asset.url,
-      images: [details.image.asset.url],
+      images: [details.image.asset.url, siteConfig.image],
       creator: "@dev__steve",
     },
   };

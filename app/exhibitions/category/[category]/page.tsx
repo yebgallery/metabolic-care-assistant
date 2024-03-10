@@ -16,7 +16,9 @@ export async function generateMetadata({ params }: { params: { category: string 
   return {
     title: `Yeb Gallery | ${category} Exhibitions`,
     description: siteConfig.description,
-
+    alternates: {
+      canonical: `/exhibitions/category/${params.category}`,
+    },
     openGraph: {
       type: "website",
       locale: "en",
@@ -76,7 +78,7 @@ export default async function Page({
     <section className="py-14 lg:py-20 space-y-10">
       <WidthConstraint>
         <div className="flex flex-col lg:flex-row justify-between gap-5 items-start md:items-center">
-          <h2 className="font-[600] text-[18px] uppercase">Exhibitions</h2>
+          <h1 className="font-[600] text-[18px] uppercase">Exhibitions</h1>
           <NavFilter />
         </div>
         <div className="flex flex-col gap-14 py-10">

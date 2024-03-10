@@ -11,6 +11,9 @@ import { unstable_noStore as noStore } from "next/cache";
 export const metadata: Metadata = {
   title: "Yeb Gallery | Home",
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en",

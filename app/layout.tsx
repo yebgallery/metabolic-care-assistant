@@ -8,9 +8,6 @@ import { siteConfig } from "@/config/site-config";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: "/",
-  },
 };
 export default function RootLayout({
   children,
