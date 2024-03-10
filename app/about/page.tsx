@@ -9,6 +9,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Yeb Gallery | About",
   description: siteConfig.description,
+
   openGraph: {
     type: "website",
     locale: "en",
@@ -83,9 +84,9 @@ const Page = () => {
             <div className="space-y-4 py-10">
               <h2 className="font-[600] text-[18px] uppercase">GALLERY OPENS</h2>
               <p className="p-2 w-max bg-black text-white">
-                Monday – Saturday | 11am – 7pm
+                Monday – Saturday | 10am – 7pm
                 <br />
-                CLOSED SUNDAY, by appointment only
+                SUNDAY | 12pm - 5pm
               </p>
             </div>
             <div className="space-y-4 py-10">

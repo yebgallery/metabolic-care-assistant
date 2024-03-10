@@ -35,11 +35,11 @@ const Footer = () => {
               <Image src="/assets/fb.svg" alt="" width={28} height={28} />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="https://www.instagram.com/yebgallery" target="_blank">
               <Image src="/assets/artsy.svg" alt="" width={28} height={28} />
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href="https://www.instagram.com/yebgallery" target="_blank">
               <Image src="/assets/ig.svg" alt="" width={28} height={28} />
@@ -58,11 +58,11 @@ const Footer = () => {
               />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="#" target="_blank">
               <Image src="/assets/wiki.svg" alt="" width={28} height={28} />
             </Link>
-          </li>
+          </li> */}
         </ul>
       </WidthConstraint>
     </footer>

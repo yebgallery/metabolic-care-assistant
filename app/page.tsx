@@ -57,7 +57,12 @@ export default async function Home() {
     <main>
       <HeroCarousel posts={heroExhibitions.slice(0, 2)} />
       <div className="z-[20] relative">
-        <NewsSection news={newsFeed} title="Featured News" />
+        <NewsSection
+          news={newsFeed}
+          title="Featured News"
+          showMore
+          className="md:grid-cols-2 lg:grid-cols-3"
+        />
         <CurrentExhibition
           current={
             heroExhibitions.find(

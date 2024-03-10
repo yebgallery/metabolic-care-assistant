@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: { category: string 
   return {
     title: `Yeb Gallery | ${category} Exhibitions`,
     description: siteConfig.description,
+
     openGraph: {
       type: "website",
       locale: "en",

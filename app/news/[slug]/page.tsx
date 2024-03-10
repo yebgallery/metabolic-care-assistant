@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: details.title,
     description: siteConfig.description,
+
     openGraph: {
       type: "website",
       locale: "en",
@@ -108,7 +109,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {post.source && (
               <>
                 <br />
-                <Link href={post.source} className="text-text-accent">
+                <Link href={post.source} target="_blank" className="text-text-accent">
                   LEARN MORE {">"}
                 </Link>
               </>
@@ -140,7 +141,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </Link> */}
         </div>
       </WidthConstraint>
-      <NewsSection news={newsFeed} title="News" />
+      <NewsSection
+        news={newsFeed.filter((item) => item.slug.current !== params.slug)}
+        title="News"
+        showMore
+        className="md:grid-cols-2"
+      />
     </section>
   );
 }

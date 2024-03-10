@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: details.name,
     description: siteConfig.description,
+
     openGraph: {
       type: "website",
       locale: "en",

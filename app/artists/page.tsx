@@ -13,6 +13,7 @@ import React from "react";
 export const metadata: Metadata = {
   title: "Yeb Gallery | Artists",
   description: siteConfig.description,
+
   openGraph: {
     type: "website",
     locale: "en",
@@ -49,15 +50,17 @@ export default async function Page() {
           <h1 className="text-[20px]">
             FEATURED ARTIST | <span className="text-[16px]">KWABENA YEBOAH</span>
           </h1>
-          <Link href="/artists/kwabena-yeboah" className="w-full">
-            <Image
-              src="/assets/featured.jpg"
-              className="min-h-[250px] max-h-[400px] object-cover"
-              width={500}
-              height={400}
-              alt=""
-            />
-          </Link>
+          <div>
+            <Link href="/artists/kwabena-yeboah" className="w-full">
+              <Image
+                src="/assets/featured.jpg"
+                className="min-h-[250px] max-h-[400px] w-full object-cover"
+                width={500}
+                height={500}
+                alt=""
+              />
+            </Link>
+          </div>
         </div>
         <div className="space-y-4">
           <h2 className="font-[600] text-[18px] uppercase">Various Artists</h2>

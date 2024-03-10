@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title,
     description: post.brief ?? siteConfig.description,
+
     openGraph: {
       type: "website",
       locale: "en",
