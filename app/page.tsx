@@ -11,9 +11,24 @@ import { unstable_noStore as noStore } from "next/cache";
 export const metadata: Metadata = {
   title: "Yeb Gallery | Home",
   description: siteConfig.description,
+  authors: [{ name: "Stephen Okyere" }, { name: "Enoch Offei" }],
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
   },
+  keywords: [
+    "kwabena yeboah",
+    "solo artist",
+    "yeb gallery",
+    "enoch offei",
+    "kwame nkrumah museum",
+    "yeb art",
+    "thread of life",
+    "artist-run gallery",
+    "west hills mall",
+    "stephen okyere",
+    "silk thread art",
+    "thread art",
+  ],
   openGraph: {
     type: "website",
     locale: "en",
@@ -28,7 +43,7 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | Home`,
     description: siteConfig.description,
     images: siteConfig.image,
-    creator: "@dev__steve",
+    creator: "Stephen Okyere",
   },
 };
 

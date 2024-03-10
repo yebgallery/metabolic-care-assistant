@@ -62,13 +62,18 @@ const Header = () => {
       <WidthConstraint className="flex flex-col justify-between gap-4">
         <div className="flex justify-between  items-center w-full">
           <a href="/">
-            <Image src="/assets/logo.svg" alt="" width={200} height={100} />
+            <Image
+              src="/assets/logo.svg"
+              alt="Yeb Gallery Logo"
+              width={200}
+              height={100}
+            />
           </a>
           {
-            <nav className="">
+            <nav>
               <ul className="hidden lg:flex gap-8 nav-link ">
                 {NAV_ITEMS.map((item) => (
-                  <li key={item.path} className="">
+                  <li key={item.path}>
                     <Link
                       href={item.path}
                       className={cn(
@@ -86,7 +91,7 @@ const Header = () => {
               <button
                 className="custom-toggler block lg:hidden"
                 type="button"
-                aria-controls="navbarSupportedContent"
+                aria-controls="toggle-nav"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >

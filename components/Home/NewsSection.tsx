@@ -30,7 +30,7 @@ const NewsSection = (props: {
                 className="object-cover w-full pb-4 lg:h-[270px]"
                 width={500}
                 height={500}
-                alt=""
+                alt={item.title}
               />
               <span className="space-y-2">
                 <h2 className="text-[18px]">{item.title}</h2>

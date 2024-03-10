@@ -44,6 +44,7 @@ const HeroCarousel = (props: { posts: any[] }) => {
             width={2000}
             height={2000}
             alt="..."
+            priority
             style={{
               transform: `translateY(${calculateParallaxOffset()}px)`,
             }}
@@ -78,10 +79,13 @@ const HeroCarousel = (props: { posts: any[] }) => {
                   else setCurrent(props.posts.length - 1);
                 }}
               />
-              <button className="transition-transform active:scale-90">
+              <button
+                aria-label="Yeb Gallery Logo Icon"
+                className="transition-transform active:scale-90"
+              >
                 <Image
                   src="/assets/hero-icon.svg"
-                  alt={`Exhibited Art By ${props.posts[current].name}`}
+                  alt={`Yeb Gallery Logo Rounded Icon`}
                   width={100}
                   height={100}
                 />

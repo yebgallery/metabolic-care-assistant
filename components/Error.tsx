@@ -8,7 +8,10 @@ const ErrorComponent = ({ title }: { title: string }) => {
       <h1 className="text-2xl lg:text-4xl">{title}</h1>
 
       <Link href="/">
-        <button className="bg-black barlow py-3 flex items-center justify-center uppercase w-[200px]  text-white">
+        <button
+          aria-label="go-home"
+          className="bg-black barlow py-3 flex items-center justify-center uppercase w-[200px]  text-white"
+        >
           Go Home
         </button>
       </Link>

@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
         : [siteConfig.url],
-      creator: "@dev__steve",
+      creator: "Stephen Okyere",
     },
   };
 }

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | News`,
     description: siteConfig.description,
     images: [siteConfig.image],
-    creator: "@dev__steve",
+    creator: "Stephen Okyere",
   },
 };
 

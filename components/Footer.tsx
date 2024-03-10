@@ -33,26 +33,32 @@ const Footer = () => {
         <ul className="flex items-center gap-4 ">
           <li>
             <a
-              href="https://www.facebook.com/pridelands.africa?mibextid=LQQJ4d"
+              href="https://facebook.com/pridelands.africa?mibextid=LQQJ4d"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Image src="/assets/fb.svg" alt="Facebook icon" width={28} height={28} />
             </a>
           </li>
           {/* <li>
-            <a href="https://www.instagram.com/yebgallery" target="_blank">
+            <a href="https://instagram.com/yebgallery" target="_blank" rel="noopener noreferrer">
               <Image src="/assets/artsy.svg" alt="" width={28} height={28} />
             </a>
           </li> */}
           <li>
-            <a href="https://www.instagram.com/yebgallery" target="_blank">
+            <a
+              href="https://instagram.com/yebgallery"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src="/assets/ig.svg" alt="Instagram icon" width={28} height={28} />
             </a>
           </li>
           <li>
             <a
               target="_blank"
-              href="https://www.linkedin.com/posts/strecsolutions_yeb-gallery-artist-run-gallery-of-contemporary-activity-7161851419954790400-y1Jh"
+              href="https://linkedin.com/posts/strecsolutions_yeb-gallery-artist-run-gallery-of-contemporary-activity-7161851419954790400-y1Jh"
+              rel="noopener noreferrer"
             >
               <Image
                 src="/assets/linkedin-round-svgrepo-com.svg"
@@ -63,7 +69,7 @@ const Footer = () => {
             </a>
           </li>
           {/* <li>
-            <a href="#" target="_blank">
+            <a href="#" target="_blank" rel="noopener noreferrer">
               <Image src="/assets/wiki.svg" alt="" width={28} height={28} />
             </a>
           </li> */}

@@ -75,6 +75,7 @@ const ContactForm = () => {
           />
         </div>
         <button
+          aria-label="submit"
           type="submit"
           className="bg-black barlow py-3 flex items-center justify-center uppercase w-[200px] md:w-[300px] text-white"
         >

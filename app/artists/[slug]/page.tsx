@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: `Artist | ${details.name}`,
       description: siteConfig.description,
       images: [details.image],
-      creator: "@dev__steve",
+      creator: "Stephen Okyere",
     },
   };
 }
@@ -112,8 +112,12 @@ export default async function Page({
             <article>
               <PortableText components={ptComponents} value={details.body} />
             </article>
-            <Link href="https://wiki.com" target="_blank">
-              <button type="button" className="bg-black text-white p-2 barlow px-4">
+            <Link href="https://wiki.com" target="_blank" rel="noopener noreferrer">
+              <button
+                aria-label="read-full-biography"
+                type="button"
+                className="bg-black text-white p-2 barlow px-4"
+              >
                 Read Full Wiki - Biography {">"}
               </button>
             </Link>

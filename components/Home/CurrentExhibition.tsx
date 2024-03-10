@@ -22,7 +22,7 @@ const CurrentExhibition = (props: { current: Post }) => {
                 src={urlFor(props.current.image).url()}
                 width={1000}
                 height={1000}
-                alt=""
+                alt={`Exhibited Art by ${props.current.name}`}
                 className="w-full lg:h-[450px] max-h-[550px] object-cover"
               />
               <span className="flex gap-4 justify-center flex-col">

@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: `News | ${details.title}`,
       description: siteConfig.description,
       images: [details.image.asset.url, siteConfig.image],
-      creator: "@dev__steve",
+      creator: "Stephen Okyere",
     },
   };
 }
@@ -109,7 +109,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {post.source && (
               <>
                 <br />
-                <Link href={post.source} target="_blank" className="text-text-accent">
+                <Link
+                  href={post.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-accent"
+                >
                   LEARN MORE {">"}
                 </Link>
               </>

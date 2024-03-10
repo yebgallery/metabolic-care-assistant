@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { category: string 
       title: `Yeb Gallery | ${category} Exhibitions`,
       description: siteConfig.description,
       images: [siteConfig.image],
-      creator: "@dev__steve",
+      creator: "Stephen Okyere",
     },
   };
 }

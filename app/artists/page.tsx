@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: `Yeb Gallery | Artists`,
     description: siteConfig.description,
     images: [siteConfig.image],
-    creator: "@dev__steve",
+    creator: "Stephen Okyere",
   },
 };
 

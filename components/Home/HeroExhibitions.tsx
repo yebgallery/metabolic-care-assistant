@@ -31,7 +31,7 @@ const HeroExhibitions = (props: { posts: Post[] }) => {
                 src={urlFor(item.image).url()}
                 width={500}
                 height={500}
-                alt=""
+                alt={`Exhibited Art by ${item.name}`}
                 className="w-full object-cover lg:h-[300px]"
               />
               <div className="space-y-2 py-4">
