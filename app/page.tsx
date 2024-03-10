@@ -42,7 +42,7 @@ export default async function Home() {
 }`);
 
   const heroExhibitions: Post[] =
-    await sanityClient.fetch(`*[_type == "post" && "current" in categories[]->title ] | order(_createdAt desc) {
+    await sanityClient.fetch(`*[_type == "post"] | order(_createdAt desc) {
     _id,
     title,
     slug,
@@ -51,7 +51,7 @@ export default async function Home() {
     eventlocation,
     brief,
     "image": mainImage.asset->url
-  }`);
+  }[0...4]`);
 
   return (
     <main>
