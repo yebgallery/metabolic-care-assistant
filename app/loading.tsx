@@ -11,7 +11,7 @@ const Loading = () => {
           <Image
             src="/assets/loader.png"
             className="animate-pulse scale-[0.8]  w-full h-full"
-            alt="Loading"
+            alt="Yeb gallery animated logo"
             priority
             width={500}
             height={500}

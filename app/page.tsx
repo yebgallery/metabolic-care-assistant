@@ -53,6 +53,7 @@ export default async function Home() {
     eventdate,
     eventlocation,
     brief,
+    "name":artist->name,
     "image": mainImage.asset->url
   }[0...4]`);
 
@@ -62,7 +63,7 @@ export default async function Home() {
       <div className="z-[20] relative">
         <NewsSection
           news={newsFeed}
-          title="Featured News"
+          title={<h2 className="font-[600] text-[18px] uppercase">Featured News</h2>}
           showMore
           className="md:grid-cols-2 lg:grid-cols-3"
         />

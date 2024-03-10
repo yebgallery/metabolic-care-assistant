@@ -41,7 +41,7 @@ const Page = () => {
               className="h-full w-full object-cover"
               width={500}
               height={500}
-              alt=""
+              alt="Kwabena Yeboah, Yeb Gallery Founder"
             />
           </div>
           <div className="flex-1 leading-[30px]">

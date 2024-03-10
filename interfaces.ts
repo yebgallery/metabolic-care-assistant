@@ -22,6 +22,7 @@ export interface Post {
   eventlocation: string;
   eventdate: string;
   brief: string;
+  name: string;
   mainImage: {
     _id: string;
     url: string;

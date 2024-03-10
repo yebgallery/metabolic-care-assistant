@@ -27,21 +27,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }[0]
   `);
   return {
-    title: details.title,
+    title: `News | ${details.title}`,
     description: siteConfig.description,
-
+    alternates: {
+      canonical: `/news/${params.slug}`,
+    },
     openGraph: {
       type: "website",
       locale: "en",
       url: siteConfig.url,
-      title: details.title,
+      title: `News | ${details.title}`,
       description: siteConfig.description,
       siteName: siteConfig.name,
       images: [details.image.asset.url, siteConfig.image],
     },
     twitter: {
       card: "summary_large_image",
-      title: details.title,
+      title: `News | ${details.title}`,
       description: siteConfig.description,
       images: [details.image.asset.url, siteConfig.image],
       creator: "@dev__steve",
@@ -118,7 +120,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               src={urlFor(post.image).url()}
               width={500}
               height={500}
-              alt=""
+              alt={post.title}
               className="h-full w-full object-cover"
             />
           </div>
@@ -141,7 +143,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </WidthConstraint>
       <NewsSection
         news={newsFeed.filter((item) => item.slug.current !== params.slug)}
-        title="News"
+        title={<h2 className="font-[600] text-[18px] uppercase">News</h2>}
         showMore
         className="md:grid-cols-2"
       />

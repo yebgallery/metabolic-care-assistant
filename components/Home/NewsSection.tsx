@@ -7,7 +7,7 @@ import { cn } from "@/utils/cn";
 
 const NewsSection = (props: {
   news: any[];
-  title: string;
+  title: JSX.Element;
   className?: string;
   showMore: boolean;
 }) => {
@@ -15,7 +15,7 @@ const NewsSection = (props: {
     <section className="py-20 bg-[#fff] ">
       <WidthConstraint className="space-y-10 ">
         <div className="flex justify-between items-center">
-          <h2 className="font-[600] text-[18px] uppercase">{props.title}</h2>
+          {props.title}
           {props.showMore && (
             <Link href="/news" className="uppercase nav-link cursor-pointer">
               More news {">"}

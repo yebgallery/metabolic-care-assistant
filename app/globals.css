@@ -40,16 +40,6 @@ textarea {
   font-family: "Barlow", sans-serif;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 `
   );
   return {
-    title: post.title,
+    title: `Exhibition | ${post.title}`,
     description: post.brief ?? siteConfig.description,
     alternates: {
       canonical: `/exhibitions/${params.slug}`,
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: "website",
       locale: "en",
       url: siteConfig.url,
-      title: post.title,
+      title: `Exhibition | ${post.title}`,
       description: post.brief ?? siteConfig.description,
       siteName: siteConfig.name,
       images: post.installationViews
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: `Exhibition | ${post.title}`,
       description: post.brief ?? siteConfig.description,
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
@@ -141,21 +141,19 @@ export default async function Page({
     },
   ];
 
-  if (!post) return <ErrorComponent title={`No Exhibition to show`} />;
+  if (!post || !post.mainImage) return <ErrorComponent title={`No Exhibition to show`} />;
 
   return (
     <>
-      {post.mainImage && (
-        <div className="h-[calc(100vh-100px)]">
-          <Image
-            src={urlFor(post.mainImage).url()}
-            width={1000}
-            height={1000}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </div>
-      )}
+      <div className="h-[calc(100vh-100px)]">
+        <Image
+          src={urlFor(post.mainImage).url()}
+          width={1000}
+          height={1000}
+          alt={`Art by ${post.name}`}
+          className="h-full w-full object-cover parallax"
+        />
+      </div>
       <WidthConstraint className="my-20 space-y-10">
         <div className="space-y-4 lg:space-y-10">
           <h1
@@ -186,7 +184,7 @@ export default async function Page({
                 src={urlFor(post.exhibitionImage).url()}
                 width={500}
                 height={500}
-                alt=""
+                alt={`Exhibited Art by ${post.name}`}
                 className="h-full w-full object-cover"
               />
             )}
@@ -204,13 +202,13 @@ export default async function Page({
             <h2 className="font-[600] text-[18px] uppercase">Installation View</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {post.installationViews.map(
-                (item: { asset: { _id: string; url: string } }) => (
+                (item: { asset: { _id: string; url: string } }, index: number) => (
                   <Image
                     key={item.asset._id}
                     src={item.asset.url}
                     width={500}
                     height={500}
-                    alt=""
+                    alt={`Installation view ${index + 1} of ${post.title}`}
                     className="h-full w-full object-cover"
                   />
                 )
@@ -222,16 +220,18 @@ export default async function Page({
           <div className="space-y-10 scroll-m-[100px]" id="photos">
             <h2 className="font-[600] text-[18px] uppercase">Photographs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {post.photographs.map((item: { asset: { _id: string; url: string } }) => (
-                <Image
-                  key={item.asset._id}
-                  src={item.asset.url}
-                  width={500}
-                  height={500}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              ))}
+              {post.photographs.map(
+                (item: { asset: { _id: string; url: string } }, index: number) => (
+                  <Image
+                    key={item.asset._id}
+                    src={item.asset.url}
+                    width={500}
+                    height={500}
+                    alt={`Photograph ${index + 1} of ${post.title}`}
+                    className="h-full w-full object-cover"
+                  />
+                )
+              )}
             </div>
           </div>
         )}

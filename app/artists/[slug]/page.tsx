@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }[0]
     `);
   return {
-    title: details.name,
+    title: `Artist | ${details.name}`,
     description: siteConfig.description,
     alternates: {
       canonical: `/artists/${params.slug}`,
@@ -33,14 +33,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: "website",
       locale: "en",
       url: siteConfig.url,
-      title: details.name,
+      title: `Artist | ${details.name}`,
       description: siteConfig.description,
       siteName: siteConfig.name,
       images: [details.image],
     },
     twitter: {
       card: "summary_large_image",
-      title: details.name,
+      title: `Artist | ${details.name}`,
       description: siteConfig.description,
       images: [details.image],
       creator: "@dev__steve",
@@ -104,7 +104,7 @@ export default async function Page({
               src={urlFor(details.image).url()}
               width={500}
               height={500}
-              alt=""
+              alt={`Photo Of ${details.name}`}
               className="h-full w-full object-cover"
             />
           </div>

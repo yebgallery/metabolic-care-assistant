@@ -59,7 +59,7 @@ export default async function Page() {
                 className="min-h-[250px] max-h-[400px] w-full object-cover"
                 width={500}
                 height={500}
-                alt=""
+                alt="Featured Art by Kwabena Yeboah"
               />
             </Link>
           </div>
@@ -77,7 +77,7 @@ export default async function Page() {
                   <div className="project-image">
                     <Image
                       src={urlFor(item.image).url()}
-                      alt=""
+                      alt={`Photo of ${item.name}`}
                       width={400}
                       height={400}
                     />

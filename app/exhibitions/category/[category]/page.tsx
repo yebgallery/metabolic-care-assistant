@@ -56,6 +56,7 @@ export default async function Page({
   eventdate,
   eventlocation,
   brief,
+  "name":artist->name,
   "image": mainImage.asset->url
 }  [0...50]`)
       : await sanityClient.fetch(`*[_type == "post" && "${currentRef}" in categories[]->title] | order(_createdAt desc){
@@ -66,6 +67,7 @@ export default async function Page({
   eventdate,
   eventlocation,
   brief,
+  "name":artist->name,
   "image": mainImage.asset->url
 }  [0...50]`);
   if (exhibitions.length < 1)
@@ -93,7 +95,7 @@ export default async function Page({
                   src={urlFor(item.image).url()}
                   width={1000}
                   height={1000}
-                  alt=""
+                  alt={`Exhibited Art by ${item.name}`}
                   className="w-full lg:w-[55%] lg:h-[450px] max-h-[500px] object-cover"
                 />
                 <div className="flex flex-1 gap-2 lg:gap-4 justify-center flex-col">

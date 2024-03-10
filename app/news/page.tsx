@@ -46,7 +46,7 @@ export default async function Page() {
     <section className="my-10 space-y-10">
       <NewsSection
         news={newsFeed}
-        title="News"
+        title={<h1 className="font-[600] text-[18px] uppercase">News</h1>}
         showMore={false}
         className="md:grid-cols-2 lg:grid-cols-3"
       />

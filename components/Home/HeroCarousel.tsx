@@ -35,12 +35,12 @@ const HeroCarousel = (props: { posts: any[] }) => {
         initial={{ opacity: 0.8 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="h-[calc(100vh-100px)] parallax"
+        className="h-[calc(100vh-100px)]"
       >
         <Link href={`/exhibitions/${props.posts[current].slug.current}`}>
           <Image
             src={urlFor(props.posts[current].image).url()}
-            className="w-full  h-full bg-cover object-cover"
+            className="w-full  h-full bg-cover object-cover parallax"
             width={2000}
             height={2000}
             alt="..."
@@ -79,7 +79,12 @@ const HeroCarousel = (props: { posts: any[] }) => {
                 }}
               />
               <button className="transition-transform active:scale-90">
-                <Image src="/assets/hero-icon.svg" alt="" width={100} height={100} />
+                <Image
+                  src="/assets/hero-icon.svg"
+                  alt={`Exhibited Art By ${props.posts[current].name}`}
+                  width={100}
+                  height={100}
+                />
               </button>
               <ChevronRight
                 size={40}
