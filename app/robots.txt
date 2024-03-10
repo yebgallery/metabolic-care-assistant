@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yebgallery.com/sitemap.xml
+Sitemap: https://www.yebgallery.com/sitemap.xml

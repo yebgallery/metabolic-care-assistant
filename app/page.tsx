@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   authors: [{ name: "Stephen Okyere" }, { name: "Enoch Offei" }],
   alternates: {
-    canonical: siteConfig.url,
+    canonical: "/",
   },
   keywords: [
     "kwabena yeboah",
