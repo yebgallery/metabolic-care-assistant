@@ -51,7 +51,7 @@ const HeroCarousel = (props: { posts: any[] }) => {
           />
         </Link>
         <div className="hero-overlay" style={{ zIndex: 1 }}>
-          <WidthConstraint className="text-start flex flex-col lg:flex-row justify-between items-start lg:items-center">
+          <WidthConstraint className="text-start gap-4 flex flex-col lg:flex-row justify-between items-start lg:items-center">
             <div
               className={cn(
                 "space-y-6",
@@ -81,7 +81,7 @@ const HeroCarousel = (props: { posts: any[] }) => {
               />
               <button
                 aria-label="Yeb Gallery Logo Icon"
-                className="transition-transform active:scale-90"
+                className="transition-transform scale-[0.9] active:scale-[0.8] lg:scale-100  lg:active:scale-90"
               >
                 <Image
                   src="/assets/hero-icon.svg"
