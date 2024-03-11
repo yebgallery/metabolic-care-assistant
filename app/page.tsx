@@ -9,8 +9,8 @@ import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 
 export const metadata: Metadata = {
-  title: "Yeb Gallery | Home",
-  description: siteConfig.description,
+  title: "Yeb Gallery | Contemporary  Art Gallery",
+  description: siteConfig.description.default,
   authors: [{ name: "Stephen Okyere" }, { name: "Enoch Offei" }],
   alternates: {
     canonical: "/",
@@ -33,15 +33,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en",
     url: siteConfig.url,
-    title: `Yeb Gallery | Home`,
-    description: siteConfig.description,
+    title: `Yeb Gallery | Contemporary  Art Gallery`,
+    description: siteConfig.description.default,
     siteName: siteConfig.name,
     images: siteConfig.image,
   },
   twitter: {
     card: "summary_large_image",
-    title: `Yeb Gallery | Home`,
-    description: siteConfig.description,
+    title: `Yeb Gallery | Contemporary  Art Gallery`,
+    description: siteConfig.description.default,
     images: siteConfig.image,
     creator: "Stephen Okyere",
   },
@@ -57,7 +57,7 @@ export default async function Home() {
   excerpt,
   eventdate,
   "image": mainImage.asset->url
-}`);
+}[0...3]`);
 
   const heroExhibitions: Post[] =
     await sanityClient.fetch(`*[_type == "post"] | order(_createdAt desc) {

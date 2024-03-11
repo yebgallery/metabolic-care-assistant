@@ -4,9 +4,10 @@ import Link from "next/link";
 import WidthConstraint from "../WidthConstraint";
 import { urlFor } from "@/utils/image-builder";
 import { cn } from "@/utils/cn";
+import { News } from "@/interfaces";
 
 const NewsSection = (props: {
-  news: any[];
+  news: News[];
   title: JSX.Element;
   className?: string;
   showMore: boolean;
@@ -33,7 +34,7 @@ const NewsSection = (props: {
                 alt={item.title}
               />
               <span className="space-y-2">
-                <h2 className="text-[18px]">{item.title}</h2>
+                <h2 className="text-[18px] uppercase">{item.title}</h2>
                 <span className="text-[14px] text-text-accent">{item.excerpt}</span>
                 <p className="text-text-accent tracking-[1.8px] text-[12px]">
                   {item.eventdate}

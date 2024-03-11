@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     `);
   return {
     title: `Artist | ${details.name}`,
-    description: siteConfig.description,
+    description: siteConfig.description.artists,
     alternates: {
       canonical: `/artists/${params.slug}`,
     },
@@ -34,14 +34,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       locale: "en",
       url: siteConfig.url,
       title: `Artist | ${details.name}`,
-      description: siteConfig.description,
+      description: siteConfig.description.artists,
       siteName: siteConfig.name,
       images: [details.image],
     },
     twitter: {
       card: "summary_large_image",
       title: `Artist | ${details.name}`,
-      description: siteConfig.description,
+      description: siteConfig.description.artists,
       images: [details.image],
       creator: "Stephen Okyere",
     },

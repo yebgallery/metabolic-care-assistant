@@ -12,7 +12,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "Yeb Gallery | Artists",
-  description: siteConfig.description,
+  description: siteConfig.description.artists,
   alternates: {
     canonical: "/artists",
   },
@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     locale: "en",
     url: siteConfig.url,
     title: `Yeb Gallery | Artists`,
-    description: siteConfig.description,
+    description: siteConfig.description.artists,
     siteName: siteConfig.name,
     images: [siteConfig.image],
   },
   twitter: {
     card: "summary_large_image",
     title: `Yeb Gallery | Artists`,
-    description: siteConfig.description,
+    description: siteConfig.description.artists,
     images: [siteConfig.image],
     creator: "Stephen Okyere",
   },

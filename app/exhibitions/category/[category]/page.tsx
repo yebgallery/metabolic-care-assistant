@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { category: string 
   const category = params.category.split("")[0].toUpperCase() + params.category.slice(1);
   return {
     title: `Yeb Gallery | ${category} Exhibitions`,
-    description: siteConfig.description,
+    description: siteConfig.description.exhibitions,
     alternates: {
       canonical: `/exhibitions/category/${params.category}`,
     },
@@ -24,14 +24,14 @@ export async function generateMetadata({ params }: { params: { category: string 
       locale: "en",
       url: siteConfig.url,
       title: `Yeb Gallery | ${category} Exhibitions`,
-      description: siteConfig.description,
+      description: siteConfig.description.exhibitions,
       siteName: siteConfig.name,
       images: [siteConfig.image],
     },
     twitter: {
       card: "summary_large_image",
       title: `Yeb Gallery | ${category} Exhibitions`,
-      description: siteConfig.description,
+      description: siteConfig.description.exhibitions,
       images: [siteConfig.image],
       creator: "Stephen Okyere",
     },

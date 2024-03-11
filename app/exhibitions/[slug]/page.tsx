@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   );
   return {
     title: `Exhibition | ${post.title}`,
-    description: post.brief ?? siteConfig.description,
+    description: post.brief ?? siteConfig.description.exhibitions,
     alternates: {
       canonical: `/exhibitions/${params.slug}`,
     },
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       locale: "en",
       url: siteConfig.url,
       title: `Exhibition | ${post.title}`,
-      description: post.brief ?? siteConfig.description,
+      description: post.brief ?? siteConfig.description.exhibitions,
       siteName: siteConfig.name,
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     twitter: {
       card: "summary_large_image",
       title: `Exhibition | ${post.title}`,
-      description: post.brief ?? siteConfig.description,
+      description: post.brief ?? siteConfig.description.exhibitions,
       images: post.installationViews
         ? post.installationViews.map((item) => item.asset.url)
         : [siteConfig.url],
