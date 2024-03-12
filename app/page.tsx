@@ -68,6 +68,7 @@ export default async function Home() {
     eventdate,
     eventlocation,
     brief,
+    "currentImage":currentImage.asset->url,
     "name":artist->name,
     "image": mainImage.asset->url
   }[0...4]`);

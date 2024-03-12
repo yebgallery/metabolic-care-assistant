@@ -27,6 +27,10 @@ export interface Post {
     _id: string;
     url: string;
   };
+  currentImage: {
+    _id: string;
+    url: string;
+  };
   installationViews: { asset: { _id: string; url: string } }[];
 }
 export interface News {

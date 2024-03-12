@@ -13,13 +13,9 @@ const CurrentExhibition = (props: { current: Post }) => {
         <h2 className="font-[600] text-[18px] uppercase">Current</h2>
         <div>
           <Link className="" href={`/exhibitions/${props.current.slug.current}`}>
-            <div
-              data-aos="fade-up"
-              data-aos-duration="1500"
-              className="grid  grid-cols-1 lg:grid-cols-2 gap-10"
-            >
+            <div className="grid  grid-cols-1 lg:grid-cols-2 gap-10">
               <Image
-                src={urlFor(props.current.image).url()}
+                src={urlFor(props.current.currentImage).url()}
                 width={1000}
                 height={1000}
                 alt={`Exhibited Art by ${props.current.name}`}
