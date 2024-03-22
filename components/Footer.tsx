@@ -40,11 +40,16 @@ const Footer = () => {
               <Image src="/assets/fb.svg" alt="Facebook icon" width={28} height={28} />
             </a>
           </li>
-          {/* <li>
-            <a href="https://instagram.com/yebgallery" target="_blank" rel="noopener noreferrer">
+          <li>
+            <a
+              title="Follow Yeb Gallery on Artsy"
+              href="https://www.artsy.net/partner/yeb-gallery"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image src="/assets/artsy.svg" alt="" width={28} height={28} />
             </a>
-          </li> */}
+          </li>
           <li>
             <a
               href="https://instagram.com/yebgallery"
@@ -68,6 +73,19 @@ const Footer = () => {
               />
             </a>
           </li>
+          {/* <a
+            title="Follow Yeb Gallery on Artsy"
+            href="https://www.artsy.net/partner/yeb-gallery?utm_campaign=artsy-embedded-widget&utm_source=volt&utm_medium=embedded-widget"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="https://files.artsy.net/images/artsy-follow-us-290x64_0.png"
+              width="145"
+              height="32"
+              alt="Follow Yeb Gallery on Artsy"
+            />
+          </a> */}
           {/* <li>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <Image src="/assets/wiki.svg" alt="" width={28} height={28} />

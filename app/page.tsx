@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   noStore();
   const newsFeed =
-    await sanityClient.fetch(`*[_type == "news"  ] | order(_createdAt desc){
+    await sanityClient.fetch(`*[_type == "news"  ] | order(publishedAt desc){
   _id,
   title,
   slug,
