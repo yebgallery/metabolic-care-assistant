@@ -30,50 +30,59 @@ const Footer = () => {
           </a>
         </div>
 
-        <ul className="flex items-center gap-4 ">
-          <li>
-            <a
-              href="https://facebook.com/pridelands.africa?mibextid=LQQJ4d"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image src="/assets/fb.svg" alt="Facebook icon" width={28} height={28} />
+        <div className="flex flex-col-reverse md:flex-row items-start gap-4  md:items-center">
+          <ul className="flex items-center gap-4 ">
+            <li>
+              <a
+                href="https://facebook.com/pridelands.africa?mibextid=LQQJ4d"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src="/assets/fb.svg" alt="Facebook icon" width={28} height={28} />
+              </a>
+            </li>
+            <li>
+              <a
+                title="Follow Yeb Gallery on Artsy"
+                href="https://www.artsy.net/partner/yeb-gallery"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src="/assets/artsy.svg" alt="" width={28} height={28} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/yebgallery"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src="/assets/ig.svg" alt="Instagram icon" width={28} height={28} />
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                href="https://linkedin.com/posts/strecsolutions_yeb-gallery-artist-run-gallery-of-contemporary-activity-7161851419954790400-y1Jh"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/assets/linkedin-round-svgrepo-com.svg"
+                  alt="Linkedin icon"
+                  width={28}
+                  height={28}
+                />
+              </a>
+            </li>
+
+            {/* <li>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+            <Image src="/assets/wiki.svg" alt="" width={28} height={28} />
             </a>
-          </li>
-          <li>
-            <a
-              title="Follow Yeb Gallery on Artsy"
-              href="https://www.artsy.net/partner/yeb-gallery"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image src="/assets/artsy.svg" alt="" width={28} height={28} />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://instagram.com/yebgallery"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image src="/assets/ig.svg" alt="Instagram icon" width={28} height={28} />
-            </a>
-          </li>
-          <li>
-            <a
-              target="_blank"
-              href="https://linkedin.com/posts/strecsolutions_yeb-gallery-artist-run-gallery-of-contemporary-activity-7161851419954790400-y1Jh"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/assets/linkedin-round-svgrepo-com.svg"
-                alt="Linkedin icon"
-                width={28}
-                height={28}
-              />
-            </a>
-          </li>
-          {/* <a
+          </li> */}
+          </ul>
+
+          <a
             title="Follow Yeb Gallery on Artsy"
             href="https://www.artsy.net/partner/yeb-gallery?utm_campaign=artsy-embedded-widget&utm_source=volt&utm_medium=embedded-widget"
             target="_blank"
@@ -85,13 +94,8 @@ const Footer = () => {
               height="32"
               alt="Follow Yeb Gallery on Artsy"
             />
-          </a> */}
-          {/* <li>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <Image src="/assets/wiki.svg" alt="" width={28} height={28} />
-            </a>
-          </li> */}
-        </ul>
+          </a>
+        </div>
       </WidthConstraint>
     </footer>
   );
