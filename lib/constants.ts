@@ -27,3 +27,9 @@ export const NAV_ITEMS = [
 
 export const EMAIL = "yebgallery@gmail.com";
 export const RECIPIENT_EMAIL = "info@yebgallery.com";
+
+export enum CookieNames {
+  allowConsent = "yeb-allow-cookies",
+  newsletterShown = "yeb-newsletter-shown",
+  signedNewsletter = "yeb-newsletter-signed",
+}

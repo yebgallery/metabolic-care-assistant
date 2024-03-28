@@ -5,6 +5,8 @@ import { Toaster } from "sonner";
 import MainLayout from "@/components/layout/MainLayout";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site-config";
+import CookieConsent from "@/components/modals/ConsentModal";
+import SubscribeNewsLetter from "@/components/modals/SubscribeToNewsletter";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -26,8 +28,12 @@ export default function RootLayout({
       <body>
         <Header />
         <Toaster />
-        <MainLayout>{children}</MainLayout>
-        <Footer />
+        <MainLayout>
+          {children}
+          <Footer />
+          <CookieConsent />
+          <SubscribeNewsLetter />
+        </MainLayout>
       </body>
     </html>
   );

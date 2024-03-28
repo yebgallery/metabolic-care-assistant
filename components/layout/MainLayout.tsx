@@ -11,7 +11,11 @@ const MainLayout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <div className="mt-[70px] relative">{children}</div>;
+  return (
+    <>
+      <div className="mt-[70px] relative">{children}</div>
+    </>
+  );
 };
 
 export default MainLayout;
