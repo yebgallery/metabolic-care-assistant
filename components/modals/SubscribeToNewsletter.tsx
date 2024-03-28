@@ -51,7 +51,7 @@ const SubscribeNewsLetter = () => {
     try {
       await fetch("/api/subscribe", options);
       setLoading(false);
-      toast.success("Yay! you successfully subscribed to our newsletter!");
+      toast.success("Thanks for subscribing to our newsletter!");
       setBool(false);
     } catch (error) {
       setLoading(false);
@@ -80,7 +80,7 @@ const SubscribeNewsLetter = () => {
             Subscribe to Our Newsletter
           </DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+            Stay Inspired, Stay Informed: Subscribe for the Latest Art News and Updates!
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col  gap-2">
