@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site-config";
 import CookieConsent from "@/components/modals/ConsentModal";
 import SubscribeNewsLetter from "@/components/modals/SubscribeToNewsletter";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body>
         <Header />
         <Toaster />
+        <Analytics />
         <MainLayout>
           {children}
           <Footer />
