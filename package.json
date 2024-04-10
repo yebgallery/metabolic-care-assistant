@@ -1,5 +1,5 @@
 {
-  "name": "yebs-gallery",
+  "name": "yeb-gallery",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.3.3",
     "@radix-ui/react-dialog": "^1.0.5",
     "@sanity/image-url": "^1.0.2",
     "@vercel/analytics": "^1.2.2",
